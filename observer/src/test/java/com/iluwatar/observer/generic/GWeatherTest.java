@@ -30,8 +30,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-import com.iluwatar.observer.WeatherObserver;
-import com.iluwatar.observer.WeatherType;
+import com.iluwatar.observer.normal.WeatherObserver;
+import com.iluwatar.observer.normal.WeatherType;
 import com.iluwatar.observer.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

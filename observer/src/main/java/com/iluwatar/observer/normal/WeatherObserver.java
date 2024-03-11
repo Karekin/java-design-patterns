@@ -22,18 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.observer;
-
-import lombok.extern.slf4j.Slf4j;
+package com.iluwatar.observer.normal;
 
 /**
- * Orcs.
+ * Observer interface.
  */
-@Slf4j
-public class Orcs implements WeatherObserver {
+public interface WeatherObserver {
 
-  @Override
-  public void update(WeatherType currentWeather) {
-    LOGGER.info("The orcs are facing " + currentWeather.getDescription() + " weather now");
-  }
+  void update(WeatherType currentWeather);
+
 }

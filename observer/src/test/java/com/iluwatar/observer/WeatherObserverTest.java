@@ -24,13 +24,14 @@
  */
 package com.iluwatar.observer;
 
+import com.iluwatar.observer.normal.WeatherObserver;
+import com.iluwatar.observer.normal.WeatherType;
 import com.iluwatar.observer.utils.InMemoryAppender;
 
 import java.util.Collection;
 import java.util.function.Supplier;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;

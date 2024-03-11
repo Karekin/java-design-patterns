@@ -187,7 +187,7 @@
     <module>special-case</module>
     <module>parameter-object</module>
     <module>active-object</module>
-    <module>model-view-viewmodel</module>
+<!--    <module>model-view-viewmodel</module>-->
     <module>composite-entity</module>
     <module>table-module</module>
     <module>presentation-model</module>

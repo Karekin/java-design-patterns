@@ -49,6 +49,17 @@
       <artifactId>mockito-core</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
+      <version>2.3.3.RELEASE</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-json</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -60,7 +71,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.observer.App</mainClass>
+                  <mainClass>com.iluwatar.observer.normal.App</mainClass>
                 </manifest>
               </archive>
             </configuration>

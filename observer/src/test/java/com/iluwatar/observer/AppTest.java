@@ -26,6 +26,7 @@ package com.iluwatar.observer;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import com.iluwatar.observer.normal.App;
 import org.junit.jupiter.api.Test;
 
 /**

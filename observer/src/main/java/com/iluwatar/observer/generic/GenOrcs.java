@@ -24,7 +24,7 @@
  */
 package com.iluwatar.observer.generic;
 
-import com.iluwatar.observer.WeatherType;
+import com.iluwatar.observer.normal.WeatherType;
 import lombok.extern.slf4j.Slf4j;
 
 /**

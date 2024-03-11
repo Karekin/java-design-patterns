@@ -24,11 +24,10 @@
  */
 package com.iluwatar.observer.generic;
 
-import com.iluwatar.observer.WeatherType;
+import com.iluwatar.observer.normal.WeatherType;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Date: 12/27/15 - 12:07 PM

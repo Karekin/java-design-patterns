@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.observer;
+package com.iluwatar.observer.normal;
 
 import com.iluwatar.observer.generic.GenHobbits;
 import com.iluwatar.observer.generic.GenOrcs;
