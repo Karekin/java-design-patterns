@@ -45,9 +45,9 @@ public class Consumer {
    * Consume item from the queue.
    */
   public void consume() throws InterruptedException {
-    var item = queue.take();
+    Item item = queue.take();
     LOGGER.info("Consumer [{}] consume item [{}] produced by [{}]", name,
-        item.id(), item.producer());
+        item.getId(), item.getProducer());
 
   }
 }

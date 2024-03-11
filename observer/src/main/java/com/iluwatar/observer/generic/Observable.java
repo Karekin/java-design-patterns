@@ -38,6 +38,11 @@ public abstract class Observable<S extends Observable<S, O, A>, O extends Observ
 
   protected final List<O> observers;
 
+  /**
+   * 使用CopyOnWriteArrayList意味着，当通知观察者时（即在notifyObservers方法中），
+   * 即便是在通知过程中有新的观察者被添加或者移除，也不会抛出并发修改的异常，也不会影响到正在进行的通知操作。
+   * 这就允许观察者在处理通知时自行决定是要注册还是注销，而不用担心会干扰到通知过程。
+   */
   public Observable() {
     this.observers = new CopyOnWriteArrayList<>();
   }
@@ -55,7 +60,7 @@ public abstract class Observable<S extends Observable<S, O, A>, O extends Observ
    */
   @SuppressWarnings("unchecked")
   public void notifyObservers(A argument) {
-    for (var observer : observers) {
+    for (O observer : observers) {
       observer.update((S) this, argument);
     }
   }

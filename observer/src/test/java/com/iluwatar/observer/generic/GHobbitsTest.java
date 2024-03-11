@@ -25,6 +25,9 @@
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -37,7 +40,7 @@ class GHobbitsTest extends ObserverTest<GenHobbits> {
 
   @Override
   public Collection<Object[]> dataProvider() {
-    return List.of(
+    return Arrays.asList(
         new Object[]{WeatherType.SUNNY, "The hobbits are facing Sunny weather now"},
         new Object[]{WeatherType.RAINY, "The hobbits are facing Rainy weather now"},
         new Object[]{WeatherType.WINDY, "The hobbits are facing Windy weather now"},

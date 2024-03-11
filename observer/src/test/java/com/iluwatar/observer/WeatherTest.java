@@ -34,6 +34,7 @@ import com.iluwatar.observer.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 
 /**
  * Date: 12/27/15 - 11:08 AM
@@ -60,9 +61,9 @@ class WeatherTest {
    */
   @Test
   void testAddRemoveObserver() {
-    final var observer = mock(WeatherObserver.class);
+    final WeatherObserver observer = mock(WeatherObserver.class);
 
-    final var weather = new Weather();
+    final Weather weather = new Weather();
     weather.addObserver(observer);
     verifyNoMoreInteractions(observer);
 
@@ -83,13 +84,13 @@ class WeatherTest {
    */
   @Test
   void testTimePasses() {
-    final var observer = mock(WeatherObserver.class);
-    final var weather = new Weather();
+    final WeatherObserver observer = mock(WeatherObserver.class);
+    final Weather weather = new Weather();
     weather.addObserver(observer);
 
-    final var inOrder = inOrder(observer);
-    final var weatherTypes = WeatherType.values();
-    for (var i = 1; i < 20; i++) {
+    final InOrder inOrder = inOrder(observer);
+    final WeatherType[] weatherTypes = WeatherType.values();
+    for (int i = 1; i < 20; i++) {
       weather.timePasses();
       inOrder.verify(observer).update(weatherTypes[i % weatherTypes.length]);
     }

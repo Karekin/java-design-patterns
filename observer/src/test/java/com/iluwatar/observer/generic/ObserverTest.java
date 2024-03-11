@@ -80,7 +80,7 @@ public abstract class ObserverTest<O extends Observer<?, ?, WeatherType>> {
   @ParameterizedTest
   @MethodSource("dataProvider")
   void testObserver(WeatherType weather, String response) {
-    final var observer = this.factory.get();
+    final O observer = this.factory.get();
     assertEquals(0, appender.getLogSize());
 
     observer.update(null, weather);

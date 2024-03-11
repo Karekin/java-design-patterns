@@ -49,8 +49,8 @@ public class Producer {
    * Put item in the queue.
    */
   public void produce() throws InterruptedException {
-
-    var item = new Item(name, itemId++);
+    // itemId先参与构造，再自增
+    Item item = new Item(itemId++, name);
     queue.put(item);
     Thread.sleep(RANDOM.nextInt(2000));
   }

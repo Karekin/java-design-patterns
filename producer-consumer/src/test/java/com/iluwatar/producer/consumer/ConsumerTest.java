@@ -42,15 +42,15 @@ class ConsumerTest {
 
   @Test
   void testConsume() throws Exception {
-    final var queue = spy(new ItemQueue());
-    for (var id = 0; id < ITEM_COUNT; id++) {
-      queue.put(new Item("producer", id));
+    final ItemQueue queue = spy(new ItemQueue()); // 使用明确的类型替代 var
+    for (int id = 0; id < ITEM_COUNT; id++) { // 使用明确的类型替代 var
+      queue.put(new Item(id, "producer"));
     }
 
     reset(queue); // Don't count the preparation above as interactions with the queue
-    final var consumer = new Consumer("consumer", queue);
+    final Consumer consumer = new Consumer("consumer", queue); // 使用明确的类型替代 var
 
-    for (var id = 0; id < ITEM_COUNT; id++) {
+    for (int id = 0; id < ITEM_COUNT; id++) { // 使用明确的类型替代 var
       consumer.consume();
     }
 

@@ -80,7 +80,7 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
   @ParameterizedTest
   @MethodSource("dataProvider")
   void testObserver(WeatherType weather, String response) {
-    final var observer = this.factory.get();
+    final O observer = this.factory.get(); // 替换 var 为具体类型 O
     assertEquals(0, appender.getLogSize());
 
     observer.update(weather);

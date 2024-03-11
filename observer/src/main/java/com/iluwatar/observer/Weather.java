@@ -55,14 +55,14 @@ public class Weather {
    * Makes time pass for weather.
    */
   public void timePasses() {
-    var enumValues = WeatherType.values();
+    WeatherType[] enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
     LOGGER.info("The weather changed to {}.", currentWeather);
     notifyObservers();
   }
 
   private void notifyObservers() {
-    for (var obs : observers) {
+    for (WeatherObserver obs : observers) {
       obs.update(currentWeather);
     }
   }

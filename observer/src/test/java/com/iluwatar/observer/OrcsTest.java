@@ -24,6 +24,7 @@
  */
 package com.iluwatar.observer;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,7 +37,7 @@ class OrcsTest extends WeatherObserverTest<Orcs> {
 
   @Override
   public Collection<Object[]> dataProvider() {
-    return List.of(
+    return Arrays.asList(
         new Object[]{WeatherType.SUNNY, "The orcs are facing Sunny weather now"},
         new Object[]{WeatherType.RAINY, "The orcs are facing Rainy weather now"},
         new Object[]{WeatherType.WINDY, "The orcs are facing Windy weather now"},

@@ -24,6 +24,7 @@
  */
 package com.iluwatar.producer.consumer;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
@@ -42,40 +43,47 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
 
   /**
-   * Program entry point.
+   * 程序入口点。
    *
-   * @param args command line args
+   * @param args 命令行参数
    */
   public static void main(String[] args) {
 
-    var queue = new ItemQueue();
+    // 创建一个共享队列，生产者和消费者将通过它进行通信
+    ItemQueue queue = new ItemQueue();
 
-    var executorService = Executors.newFixedThreadPool(5);
-    for (var i = 0; i < 2; i++) {
+    // 创建一个固定大小为 5 的线程池来运行生产者和消费者任务
+    ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-      final var producer = new Producer("Producer_" + i, queue);
+    // 创建并启动两个生产者任务
+    for (int i = 0; i < 2; i++) {
+      Producer producer = new Producer("Producer_" + i, queue);
       executorService.submit(() -> {
-        while (true) {
+        while (true) { // 在无限循环中不断生产项目
           producer.produce();
         }
       });
     }
 
-    for (var i = 0; i < 3; i++) {
-      final var consumer = new Consumer("Consumer_" + i, queue);
+    // 创建并启动三个消费者任务
+    for (int i = 0; i < 3; i++) {
+      Consumer consumer = new Consumer("Consumer_" + i, queue);
       executorService.submit(() -> {
-        while (true) {
+        while (true) { // 在无限循环中不断消费项目
           consumer.consume();
         }
       });
     }
 
+    // 尝试优雅地关闭线程池，不再接受新的任务
     executorService.shutdown();
     try {
+      // 等待直到所有任务完成执行或者超时
       executorService.awaitTermination(10, TimeUnit.SECONDS);
+      // 超时后强制关闭剩余的任务
       executorService.shutdownNow();
     } catch (InterruptedException e) {
-      LOGGER.error("Error waiting for ExecutorService shutdown");
+      LOGGER.error("Error waiting for ExecutorService shutdown", e);
     }
   }
 }

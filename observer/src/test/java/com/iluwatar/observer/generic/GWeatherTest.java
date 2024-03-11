@@ -36,6 +36,7 @@ import com.iluwatar.observer.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 
 /**
  * Date: 12/27/15 - 11:08 AM
@@ -62,9 +63,9 @@ class GWeatherTest {
    */
   @Test
   void testAddRemoveObserver() {
-    final var observer = mock(Race.class);
+    final Race observer = mock(Race.class); // 替换 var 为具体的类型
 
-    final var weather = new GenWeather();
+    final GenWeather weather = new GenWeather(); // 替换 var 为具体的类型
     weather.addObserver(observer);
     verifyNoMoreInteractions(observer);
 
@@ -85,13 +86,13 @@ class GWeatherTest {
    */
   @Test
   void testTimePasses() {
-    final var observer = mock(Race.class);
-    final var weather = new GenWeather();
+    final Race observer = mock(Race.class); // 替换 var 为具体的类型
+    final GenWeather weather = new GenWeather(); // 替换 var 为具体的类型
     weather.addObserver(observer);
 
-    final var inOrder = inOrder(observer);
-    final var weatherTypes = WeatherType.values();
-    for (var i = 1; i < 20; i++) {
+    final InOrder inOrder = inOrder(observer); // 明确声明 InOrder 类型
+    final WeatherType[] weatherTypes = WeatherType.values();
+    for (int i = 1; i < 20; i++) {
       weather.timePasses();
       inOrder.verify(observer).update(weather, weatherTypes[i % weatherTypes.length]);
     }

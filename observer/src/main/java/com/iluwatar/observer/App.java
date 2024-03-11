@@ -50,7 +50,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    var weather = new Weather();
+    Weather weather = new Weather();
     weather.addObserver(new Orcs());
     weather.addObserver(new Hobbits());
 
@@ -61,7 +61,7 @@ public class App {
 
     // Generic observer inspired by Java Generics and Collections by Naftalin & Wadler
     LOGGER.info("--Running generic version--");
-    var genericWeather = new GenWeather();
+    GenWeather genericWeather = new GenWeather();
     genericWeather.addObserver(new GenOrcs());
     genericWeather.addObserver(new GenHobbits());
 

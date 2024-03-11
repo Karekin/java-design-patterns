@@ -43,8 +43,8 @@ class ProducerTest {
   @Test
   void testProduce() {
     assertTimeout(ofMillis(6000), () -> {
-      final var queue = mock(ItemQueue.class);
-      final var producer = new Producer("producer", queue);
+      final ItemQueue queue = mock(ItemQueue.class); // 明确指定变量类型
+      final Producer producer = new Producer("producer", queue); // 明确指定变量类型
 
       producer.produce();
       verify(queue).put(any(Item.class));
