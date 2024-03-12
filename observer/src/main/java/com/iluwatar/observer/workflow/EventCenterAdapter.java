@@ -33,7 +33,7 @@ public class EventCenterAdapter implements MessageBroker {
     @Override
     public void registerListener(MessageListener listener) {
         // 这里模拟从事件中心接收事件
-        Event receivedEvent = new Event("Message from event center");
+        Event receivedEvent = new Event(EventType.APPROVE, "Message from event center");
         listener.onMessageReceived(receivedEvent);
     }
 }

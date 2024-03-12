@@ -2,6 +2,8 @@ package com.iluwatar.observer.workflow;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.iluwatar.observer.workflow.enums.EventType;
+import com.iluwatar.observer.workflow.enums.ResponseMode;
+import com.iluwatar.observer.workflow.enums.ResponseType;
 
 public class Application {
     public static void main(String[] args) throws JsonProcessingException {
@@ -11,9 +13,13 @@ public class Application {
         EventBus eventBus = new EventBusImpl(broker);
 
         // 注册监听器
-        eventBus.subscribe(event -> System.out.println("Received event: " + event.getMessage()));
+//        eventBus.subscribe(event -> System.out.println("Received event: " + event.getMessage()));
 
         // 发布事件
         eventBus.publish(new Event(EventType.REFRESH, "Hello World"));
+        eventBus.registerHandler(ResponseType.SEND_TODO, ResponseMode.SYNCHRONOUS, event -> {
+            // 实现SEND_TODO事件的具体处理逻辑
+            System.out.println("Handling SEND_TODO event: " + event.getMessage());
+        });
     }
 }

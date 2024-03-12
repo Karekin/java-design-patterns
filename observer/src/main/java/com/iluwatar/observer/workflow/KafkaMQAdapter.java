@@ -60,6 +60,34 @@ public class KafkaMQAdapter implements MessageBroker {
         }
     }
 
+    public void registerListener(ConsumerRecord<String, String> record) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        Event event = mapper.readValue(record.value(), Event.class);
+
+        // 根据事件类型获取相应的策略类名
+        String strategyClassName = getStrategyClassName(event.getResponseType(), event.getResponseMode());
+
+        try {
+            // 使用反射来创建策略实例
+            Class<?> strategyClass = Class.forName(strategyClassName);
+            EventHandlerStrategy strategy = (EventHandlerStrategy) strategyClass.newInstance();
+
+            // 执行策略
+            strategy.execute(event);
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+            // 处理异常，比如未找到策略类
+        }
+    }
+
+    private String getStrategyClassName(ResponseType responseType, ResponseMode responseMode) {
+        // 根据responseType和responseMode返回对应策略类的全限定名
+        // 这里需要实现这个方法，根据实际情况映射策略类名
+        return "com.example.strategies." + responseType.name() + responseMode.name() + "Strategy";
+    }
+
+
+
     private void processEntityNodeTreeUpdate(Event event) {
         // Implementation for handling ENTITY_NODE_TREE update messages
         System.out.println(event.toString());
