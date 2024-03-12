@@ -17,9 +17,5 @@ public class Application {
 
         // 发布事件
         eventBus.publish(new Event(EventType.REFRESH, "Hello World"));
-        eventBus.registerHandler(ResponseType.SEND_TODO, ResponseMode.SYNCHRONOUS, event -> {
-            // 实现SEND_TODO事件的具体处理逻辑
-            System.out.println("Handling SEND_TODO event: " + event.getMessage());
-        });
     }
 }
