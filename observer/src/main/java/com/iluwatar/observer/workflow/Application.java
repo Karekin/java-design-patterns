@@ -1,7 +1,10 @@
 package com.iluwatar.observer.workflow;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.iluwatar.observer.workflow.enums.EventType;
+
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JsonProcessingException {
         // 选择使用消息队列适配器或事件中心适配器
         MessageBroker broker = new KafkaMQAdapter(); // 或 new EventCenterAdapter();
 
@@ -11,6 +14,6 @@ public class Application {
         eventBus.subscribe(event -> System.out.println("Received event: " + event.getMessage()));
 
         // 发布事件
-        eventBus.publish(new Event("Hello World"));
+        eventBus.publish(new Event(EventType.REFRESH, "Hello World"));
     }
 }

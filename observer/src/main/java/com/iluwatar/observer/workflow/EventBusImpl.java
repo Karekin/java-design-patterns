@@ -1,5 +1,7 @@
 package com.iluwatar.observer.workflow;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 public class EventBusImpl implements EventBus {
     private MessageBroker broker;
 
@@ -8,11 +10,9 @@ public class EventBusImpl implements EventBus {
     }
 
     @Override
-    public void publish(Event event) {
+    public void publish(Event event) throws JsonProcessingException {
         // broker.sendMessage(event);
-        // 转换Event为字符串消息，这里简化为直接使用Event的message属性
-        String messageContent = event.getMessage();
-        broker.sendMessage(messageContent);
+        broker.sendMessage(event);
     }
 
     @Override
