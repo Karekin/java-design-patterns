@@ -15,12 +15,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * 主要职责：桥接 EventBus 与 Kafka 消息队列，负责消息的发送和接收
+ */
 @Service
 public class KafkaMQAdapter implements MessageBroker {
     @Autowired
     KafkaTemplate<String, String> kafkaTemplate;
-
-    MessageListenerDelegate delegate = new MessageListenerDelegate();
+    @Autowired
+    EventBus eventBus;
 
     @Override
     public void sendMessage(Event event) throws JsonProcessingException {
@@ -41,7 +44,7 @@ public class KafkaMQAdapter implements MessageBroker {
                 = EventResponseManager.getAssociationsForEvent(event.getEventType());
 
         for (Pair<ResponseType, ResponseMode> pair : associationsForEvent) {
-            delegate.onMessageReceived(event, pair.getKey(), pair.getValue());
+            eventBus.handleEvent(event, pair.getKey(), pair.getValue());
         }
     }
 }

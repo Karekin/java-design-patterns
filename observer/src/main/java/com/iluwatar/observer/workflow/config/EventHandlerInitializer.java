@@ -1,7 +1,7 @@
 package com.iluwatar.observer.workflow.config;
 
 import com.iluwatar.observer.workflow.Event;
-import com.iluwatar.observer.workflow.MessageListenerDelegate;
+import com.iluwatar.observer.workflow.EventBus;
 import com.iluwatar.observer.workflow.enums.EventResponseManager;
 import com.iluwatar.observer.workflow.enums.EventType;
 import com.iluwatar.observer.workflow.enums.ResponseMode;
@@ -21,9 +21,8 @@ public class EventHandlerInitializer {
 
     @Autowired
     private ApplicationContext applicationContext;
-
     @Autowired
-    private MessageListenerDelegate messageListenerDelegate;
+    private EventBus eventBus;
 
     @PostConstruct
     public void init() {
@@ -36,9 +35,8 @@ public class EventHandlerInitializer {
             List<Pair<ResponseType, ResponseMode>> associations
                     = EventResponseManager.getAssociationsForEvent(eventType);
 
-            associations.forEach(association -> {
-                messageListenerDelegate.registerHandler(
-                        association.getKey(), association.getValue(), (Consumer<Event>) bean);
+            associations.forEach(association -> {eventBus.registerHandler(
+                    association.getKey(), association.getValue(), (Consumer<Event>) bean);
             });
         });
     }

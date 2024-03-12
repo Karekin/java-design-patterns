@@ -30,9 +30,9 @@ public class EventCenterAdapter implements MessageBroker {
 //        }
     }
 
-    public void registerListener(MessageListener listener) {
-        // 这里模拟从事件中心接收事件
-        Event receivedEvent = new Event(EventType.APPROVE, "Message from event center");
-        listener.onMessageReceived(receivedEvent, null, null);
-    }
+//    public void registerListener(MessageListener listener) {
+//        // 这里模拟从事件中心接收事件
+//        Event receivedEvent = new Event(EventType.APPROVE, "Message from event center");
+//        listener.onMessageReceived(receivedEvent, null, null);
+//    }
 }
