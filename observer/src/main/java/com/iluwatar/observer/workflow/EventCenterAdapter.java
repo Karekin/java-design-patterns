@@ -1,16 +1,15 @@
 package com.iluwatar.observer.workflow;
 
-import com.iluwatar.observer.workflow.enums.EventType;
-
-import java.util.List;
-import java.util.Map;
+import com.iluwatar.observer.workflow.model.GenericEvent;
+import org.springframework.stereotype.Service;
 
 /**
  *
  */
+@Service
 public class EventCenterAdapter implements MessageBroker {
     @Override
-    public void sendMessage(Event event) {
+    public void sendMessage(GenericEvent event) {
         System.out.println("EventCenterAdapter: Publishing event - " + event.getMessage());
         // 这里模拟发布事件到事件中心
 //        Map<String, List<String>> map = (Map<String, List<String>>) request.get("workflow");
