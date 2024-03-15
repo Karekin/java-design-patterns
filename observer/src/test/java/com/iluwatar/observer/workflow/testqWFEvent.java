@@ -1,6 +1,7 @@
 package com.iluwatar.observer.workflow;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.iluwatar.observer.workflow.config.EventHandlerInitializer;
 import com.iluwatar.observer.workflow.enums.EventType;
 import com.iluwatar.observer.workflow.model.SpringGenericEventAdapter;
 import com.iluwatar.observer.workflow.model.UserInfo;
@@ -12,7 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+//@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = {Application.class, EventHandlerInitializer.class})
 public class testqWFEvent {
 
     @Autowired

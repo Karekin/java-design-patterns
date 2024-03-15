@@ -14,10 +14,10 @@ import java.util.function.Consumer;
 public interface EventBus {
     void publish(GenericEvent event) throws JsonProcessingException;
 
-    // 重命名subscribe方法为registerHandler，并调整实现逻辑
-    void registerHandler(EventType eventType, Consumer<GenericEvent> handler);
-
-    // 新增方法，处理接收到的事件
-    void handleEvent(GenericEvent event);
+//    // 重命名subscribe方法为registerHandler，并调整实现逻辑
+//    void registerHandler(EventType eventType, Consumer<GenericEvent> handler);
+//
+//    // 新增方法，处理接收到的事件
+//    void handleEvent(GenericEvent event);
 }
 

@@ -3,8 +3,10 @@ package com.iluwatar.observer.workflow;
 import com.iluwatar.observer.workflow.config.EventHandlerComponent;
 import com.iluwatar.observer.workflow.enums.EventType;
 import com.iluwatar.observer.workflow.model.GenericEvent;
+import org.springframework.stereotype.Component;
 
-@EventHandlerComponent(EventType.SUBMIT)
+@EventHandlerComponent(EventType.REFRESH)
+@Component
 public class UserBehaviorAnalyzer implements EventHandler {
     @Override
     public void handle(GenericEvent event) {
