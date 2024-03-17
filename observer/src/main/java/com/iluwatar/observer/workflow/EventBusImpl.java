@@ -53,7 +53,9 @@ public class EventBusImpl implements EventBus {
             ResponseType type = pair.getKey();
 
             ExecutableEvent executEvent = new ExecutableEvent();
-            executEvent.setOriginalEvent(event);
+            executEvent.setEventType(event.getEventType());
+            executEvent.setSource(event.getSource());
+            executEvent.setMessage(event.getMessage());
             executEvent.setResponseType(type);
             executEvent.setResponseMode(mode);
             MessageBroker broker = brokerMapping.get(mode);

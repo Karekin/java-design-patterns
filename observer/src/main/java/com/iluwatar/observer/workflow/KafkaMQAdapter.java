@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iluwatar.observer.workflow.enums.EventResponseManager;
 import com.iluwatar.observer.workflow.enums.ResponseMode;
+import com.iluwatar.observer.workflow.enums.ResponseType;
 import com.iluwatar.observer.workflow.model.ExecutableEvent;
 import com.iluwatar.observer.workflow.model.GenericEvent;
 import com.iluwatar.observer.workflow.model.MessageQueueEvent;
+import javafx.util.Pair;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,7 +39,7 @@ public class KafkaMQAdapter implements MessageBroker {
         // 发送消息到Kafka
         ObjectMapper mapper = new ObjectMapper();
         String jsonStr = mapper.writeValueAsString(event);
-        kafkaTemplate.send(event.getOriginalEvent().getEventType().getEventType(), jsonStr);
+        kafkaTemplate.send(event.getEventType().getEventType(), jsonStr);
 //        kafkaTemplate.send(event.getOriginalEvent().getEventType().getEventType(), event);
     }
 
@@ -47,7 +49,11 @@ public class KafkaMQAdapter implements MessageBroker {
         ObjectMapper mapper = new ObjectMapper();
 //        MessageQueueEvent event = mapper.readValue(record.value(), MessageQueueEvent.class);
         ExecutableEvent event = mapper.readValue(record.value(), ExecutableEvent.class);
-        EventResponseManager.handleEvent(event); // 转发事件到EventBus处理
+        ResponseType type = event.getResponseType();
+        ResponseMode mode = event.getResponseMode();
+        Pair<ResponseType, ResponseMode> pair = new Pair<>(type, mode);
+        MessageQueueEvent messageQueueEvent = event.toMessageQueueEvent();
+        EventResponseManager.handleEvent(messageQueueEvent, pair); // 转发事件到EventBus处理
     }
 }
 

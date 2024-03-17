@@ -1,6 +1,7 @@
 package com.iluwatar.observer.workflow.model;
 
 import com.iluwatar.observer.workflow.enums.EventType;
+import lombok.Data;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
@@ -34,5 +35,9 @@ public class SpringGenericEventAdapter extends ApplicationEvent implements Gener
     public Object getSource() {
         return super.getSource();
     }
+
+    public void setEventType(EventType eventType) {this.eventType = eventType;}
+
+    public void setMessage(String message) {this.message = message;}
 }
 

@@ -65,14 +65,11 @@ public class EventResponseManager {
     }
 
     // 新增方法，处理接收到的事件
-    public static void handleEvent(ExecutableEvent event) {
-        ResponseType responseType = event.getResponseType();
-        ResponseMode responseMode = event.getResponseMode();
-        Pair<ResponseType, ResponseMode> pair = new Pair<>(responseType, responseMode);
+    public static void handleEvent(GenericEvent event, Pair<ResponseType, ResponseMode> pair) {
         Consumer<GenericEvent> consumer = eventHandlers.get(pair);
 
         if (consumer != null) {
-            consumer.accept(event.getOriginalEvent());
+            consumer.accept(event);
         } else {
             System.out.println("No handler registered for the combination of event type and response mode: " + pair);
         }

@@ -2,8 +2,11 @@ package com.iluwatar.observer.workflow;
 
 import com.iluwatar.observer.workflow.enums.EventResponseManager;
 import com.iluwatar.observer.workflow.enums.ResponseMode;
+import com.iluwatar.observer.workflow.enums.ResponseType;
 import com.iluwatar.observer.workflow.model.ExecutableEvent;
 import com.iluwatar.observer.workflow.model.GenericEvent;
+import com.iluwatar.observer.workflow.model.MessageQueueEvent;
+import com.iluwatar.observer.workflow.model.SpringGenericEventAdapter;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
@@ -37,6 +40,10 @@ public class SpringEventAdapter implements MessageBroker  {
             condition = "#event.match(T(com.iluwatar.observer.workflow.enums.EventType).REFRESH)")
 //    @Transactional(rollbackFor = {Exception.class})
     public void onMessageReceived(ExecutableEvent event) {
-        EventResponseManager.handleEvent(event);
+        ResponseType type = event.getResponseType();
+        ResponseMode mode = event.getResponseMode();
+        Pair<ResponseType, ResponseMode> pair = new Pair<>(type, mode);
+        SpringGenericEventAdapter springGenericEventAdapter = event.toSpringGenericEventAdapter();
+        EventResponseManager.handleEvent(springGenericEventAdapter, pair); // 转发事件到EventBus处理
     }
 }
