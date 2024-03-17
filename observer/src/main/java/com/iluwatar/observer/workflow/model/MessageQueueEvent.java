@@ -1,17 +1,18 @@
 package com.iluwatar.observer.workflow.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.iluwatar.observer.workflow.enums.EventType;
 import lombok.Data;
-import lombok.Getter;
-import org.springframework.context.ApplicationEvent;
-
-import java.util.Arrays;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageQueueEvent implements GenericEvent {
-    private final EventType eventType;
-    private final String message;
-    private final Object source;
+    private EventType eventType;
+    private String message;
+    private Object source;
+
+    public MessageQueueEvent() {
+    }
 
     public MessageQueueEvent(Object source, EventType eventType, String message) {
         this.source = source;

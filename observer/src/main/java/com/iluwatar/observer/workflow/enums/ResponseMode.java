@@ -1,8 +1,10 @@
 package com.iluwatar.observer.workflow.enums;
 
 public enum ResponseMode {
-    SYNCHRONOUS("同步执行"),
-    ASYNCHRONOUS("异步执行");
+    SYNC_SINGLE("单实例同步"),
+    ASYNC_SINGLE("单实例异步"),
+    SYNC_MULTI("多实例同步"),
+    ASYNC_MULTI("多实例异步");
 
     private final String description;
 
@@ -13,6 +15,6 @@ public enum ResponseMode {
     public String getDescription() {
         return description;
     }
-
 }
+
 

@@ -4,7 +4,10 @@ import com.iluwatar.observer.workflow.EventBus;
 import com.iluwatar.observer.workflow.EventHandler;
 import com.iluwatar.observer.workflow.enums.EventResponseManager;
 import com.iluwatar.observer.workflow.enums.EventType;
+import com.iluwatar.observer.workflow.enums.ResponseMode;
+import com.iluwatar.observer.workflow.enums.ResponseType;
 import com.iluwatar.observer.workflow.model.GenericEvent;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -28,10 +31,11 @@ public class EventHandlerInitializer {
         beans.forEach((name, bean) -> {
             if (bean instanceof EventHandler) {
                 EventHandlerComponent annotation = bean.getClass().getAnnotation(EventHandlerComponent.class);
-                EventType eventType = annotation.value();
-//                EventResponseManager.registerHandler(eventType, (Consumer<GenericEvent>) bean);
-                // 使用Lambda表达式将EventHandler转换为Consumer<GenericEvent>
-                EventResponseManager.registerHandler(eventType, event -> ((EventHandler) bean).handle(event));
+                ResponseType type = annotation.type();
+                ResponseMode mode = annotation.mode();
+                Pair<ResponseType, ResponseMode> pair = new Pair<>(type, mode);
+                EventResponseManager.registerHandler(pair,
+                        event -> ((EventHandler) bean).handle(event));
             }
         });
     }

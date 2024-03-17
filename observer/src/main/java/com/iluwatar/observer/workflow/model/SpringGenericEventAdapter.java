@@ -7,8 +7,12 @@ import org.springframework.context.ApplicationEvent;
 import java.util.Arrays;
 
 public class SpringGenericEventAdapter extends ApplicationEvent implements GenericEvent {
-    private final EventType eventType;
-    private final String message;
+    private EventType eventType;
+    private String message;
+
+    public SpringGenericEventAdapter(Object source) {
+        super(source);
+    }
 
     public SpringGenericEventAdapter(Object source, EventType eventType, String message) {
         super(source);
@@ -30,10 +34,5 @@ public class SpringGenericEventAdapter extends ApplicationEvent implements Gener
     public Object getSource() {
         return super.getSource();
     }
-
-    public boolean match(EventType... options) {
-        return Arrays.stream(options).anyMatch(e -> e == this.eventType);
-    }
-
 }
 

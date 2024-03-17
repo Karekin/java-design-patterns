@@ -1,7 +1,12 @@
 package com.iluwatar.observer.workflow;
 
+import com.iluwatar.observer.workflow.enums.ResponseMode;
+import com.iluwatar.observer.workflow.model.ExecutableEvent;
 import com.iluwatar.observer.workflow.model.GenericEvent;
 import org.springframework.stereotype.Service;
+
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  *
@@ -9,8 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventCenterAdapter implements MessageBroker {
     @Override
-    public void sendMessage(GenericEvent event) {
-        System.out.println("EventCenterAdapter: Publishing event - " + event.getMessage());
+    public Set<ResponseMode> getHandledEventModes() {
+        // 假设SpringEventAdapter可以处理任务创建和任务删除事件
+        return EnumSet.of(ResponseMode.SYNC_MULTI, ResponseMode.ASYNC_MULTI);
+    }
+
+    @Override
+    public void sendMessage(ExecutableEvent event) {
+        System.out.println("EventCenterAdapter: Publishing event - " + event.getOriginalEvent().getMessage());
         // 这里模拟发布事件到事件中心
 //        Map<String, List<String>> map = (Map<String, List<String>>) request.get("workflow");
 //        try {
