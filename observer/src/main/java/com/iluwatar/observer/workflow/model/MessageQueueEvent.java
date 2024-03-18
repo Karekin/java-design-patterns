@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MessageQueueEvent implements GenericEvent {
+    private Object source;
     private EventType eventType;
     private String message;
-    private Object source;
 
     public MessageQueueEvent() {
     }
