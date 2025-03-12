@@ -39,9 +39,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 
 /**
- * Date: 12/27/15 - 11:08 AM
+ * GWeatherTest
  *
- * @author Jeroen Meulemeester
  */
 class GWeatherTest {
 
