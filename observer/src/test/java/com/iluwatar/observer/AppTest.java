@@ -30,9 +30,7 @@ import com.iluwatar.observer.normal.App;
 import org.junit.jupiter.api.Test;
 
 /**
- *
- * Application test
- *
+ * Application test.
  */
 class AppTest {
 

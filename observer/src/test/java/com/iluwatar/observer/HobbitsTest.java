@@ -31,9 +31,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * Date: 12/27/15 - 12:07 PM
+ * HobbitsTest
  *
- * @author Jeroen Meulemeester
  */
 class HobbitsTest extends WeatherObserverTest<Hobbits> {
 

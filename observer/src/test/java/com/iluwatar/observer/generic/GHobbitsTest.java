@@ -30,9 +30,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 /**
- * Date: 12/27/15 - 12:07 PM
- *
- * @author Jeroen Meulemeester
+ * GHobbitsTest.
  */
 class GHobbitsTest extends ObserverTest<GenHobbits> {
 
@@ -47,7 +45,7 @@ class GHobbitsTest extends ObserverTest<GenHobbits> {
   }
 
   /**
-   * Create a new test with the given weather and expected response
+   * Create a new test with the given weather and expected response.
    */
   public GHobbitsTest() {
     super(GenHobbits::new);

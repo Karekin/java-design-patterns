@@ -24,9 +24,14 @@
  */
 package com.iluwatar.sharding;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Basic data structure for each tuple stored in data shards.
  */
+@Getter
+@Setter
 public class Data {
 
   private int key;
@@ -38,36 +43,12 @@ public class Data {
   /**
    * Constructor of Data class.
    * @param key data key
-   * @param value data vlue
+   * @param value data value
    * @param type data type
    */
   public Data(final int key, final String value, final DataType type) {
     this.key = key;
     this.value = value;
-    this.type = type;
-  }
-
-  public int getKey() {
-    return key;
-  }
-
-  public void setKey(final int key) {
-    this.key = key;
-  }
-
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(final String value) {
-    this.value = value;
-  }
-
-  public DataType getType() {
-    return type;
-  }
-
-  public void setType(DataType type) {
     this.type = type;
   }
 

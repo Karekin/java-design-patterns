@@ -24,10 +24,9 @@
  */
 package com.iluwatar.observer;
 
-import com.iluwatar.observer.normal.WeatherObserver;
-import com.iluwatar.observer.normal.WeatherType;
-import com.iluwatar.observer.utils.InMemoryAppender;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.iluwatar.observer.utils.InMemoryAppender;
 import java.util.Collection;
 import java.util.function.Supplier;
 import org.junit.jupiter.api.AfterEach;
@@ -36,13 +35,9 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
- * Date: 12/27/15 - 11:44 AM
  * Weather Observer Tests
  * @param <O> Type of WeatherObserver
- * @author Jeroen Meulemeester
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class WeatherObserverTest<O extends WeatherObserver> {
@@ -81,7 +76,7 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
   @ParameterizedTest
   @MethodSource("dataProvider")
   void testObserver(WeatherType weather, String response) {
-    final O observer = this.factory.get(); // 替换 var 为具体类型 O
+    final var observer = this.factory.get();
     assertEquals(0, appender.getLogSize());
 
     observer.update(weather);
