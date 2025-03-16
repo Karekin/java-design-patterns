@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.idempotentconsumer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,6 +46,7 @@ class RequestServiceTests {
   @Mock
   private RequestRepository requestRepository;
   private RequestStateMachine requestStateMachine;
+
   @BeforeEach
   void setUp() {
     requestStateMachine = new RequestStateMachine();
@@ -61,6 +63,7 @@ class RequestServiceTests {
     verify(requestRepository, times(1)).findById(uuid);
     verify(requestRepository, times(1)).save(any());
   }
+
   @Test
   void createRequest_whenExists() {
     UUID uuid = UUID.randomUUID();
@@ -75,7 +78,7 @@ class RequestServiceTests {
   void startRequest_whenNotExists_shouldThrowError() {
     UUID uuid = UUID.randomUUID();
     when(requestRepository.findById(any())).thenReturn(Optional.empty());
-    assertThrows(RequestNotFoundException.class, ()->requestService.start(uuid));
+    assertThrows(RequestNotFoundException.class, () -> requestService.start(uuid));
     verify(requestRepository, times(1)).findById(uuid);
     verify(requestRepository, times(0)).save(any());
   }
@@ -97,7 +100,7 @@ class RequestServiceTests {
     UUID uuid = UUID.randomUUID();
     Request requestStarted = new Request(uuid, Request.Status.STARTED);
     when(requestRepository.findById(any())).thenReturn(Optional.of(requestStarted));
-    assertThrows(InvalidNextStateException.class, ()->requestService.start(uuid));
+    assertThrows(InvalidNextStateException.class, () -> requestService.start(uuid));
     verify(requestRepository, times(1)).findById(uuid);
     verify(requestRepository, times(0)).save(any());
   }
@@ -107,7 +110,7 @@ class RequestServiceTests {
     UUID uuid = UUID.randomUUID();
     Request requestStarted = new Request(uuid, Request.Status.COMPLETED);
     when(requestRepository.findById(any())).thenReturn(Optional.of(requestStarted));
-    assertThrows(InvalidNextStateException.class, ()->requestService.start(uuid));
+    assertThrows(InvalidNextStateException.class, () -> requestService.start(uuid));
     verify(requestRepository, times(1)).findById(uuid);
     verify(requestRepository, times(0)).save(any());
   }
@@ -123,6 +126,7 @@ class RequestServiceTests {
     verify(requestRepository, times(1)).findById(uuid);
     verify(requestRepository, times(1)).save(completedEntity);
   }
+
   @Test
   void completeRequest_whenNotInprogress() {
     UUID uuid = UUID.randomUUID();

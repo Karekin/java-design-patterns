@@ -110,26 +110,27 @@ public class RequestStateMachine {
 In the main application, we demonstrate how the `RequestService` can be used to perform idempotent operations. Whether the order creation or state transition is invoked once or multiple times, the result is consistent and does not produce unexpected side effects.
 
 ```java
-Request req = requestService.create(UUID.randomUUID());
-// Try creating the same Request again with the same UUID (idempotent operation)
-requestService.create(req.getUuid());
-// Again, try creating the same Request (idempotent operation, no new Request should be created)
-requestService.create(req.getUuid());
-LOGGER.info("Nb of requests : {}", requestRepository.count()); // 1, processRequest is idempotent
-// Attempt to start the Request (the first valid transition)
-req = requestService.start(req.getUuid());
-// Try to start the Request again, which should throw an exception since it's already started
-try {
-  req = requestService.start(req.getUuid());
-} catch (InvalidNextStateException ex) {
-  // Log an error message when trying to start a request twice
-  LOGGER.error("Cannot start request twice!");
+public class App {
+    @Bean
+    public CommandLineRunner run(RequestService requestService, RequestRepository requestRepository) {
+        return args -> {
+            Request req = requestService.create(UUID.randomUUID());
+            requestService.create(req.getUuid());
+            requestService.create(req.getUuid());
+            LOGGER.info("Nb of requests : {}", requestRepository.count()); // 1, processRequest is idempotent
+            req = requestService.start(req.getUuid());
+            try {
+                req = requestService.start(req.getUuid());
+            } catch (InvalidNextStateException ex) {
+                LOGGER.error("Cannot start request twice!");
+            }
+            req = requestService.complete(req.getUuid());
+            LOGGER.info("Request: {}", req);
+        };
+    }
 }
-// Complete the Request (valid transition from STARTED to COMPLETED)
-req = requestService.complete(req.getUuid());
-// Log the final status of the Request to confirm it's been completed
-LOGGER.info("Request: {}", req);
 ```
+
 Program output:
 ```
 19:01:54.382  INFO [main] com.iluwatar.idempotentconsumer.App      : Nb of requests : 1

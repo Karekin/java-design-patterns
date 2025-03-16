@@ -1,4 +1,4 @@
-package com.daydreamdev.secondskill.common.limit;
+package com.daydreamdev.secondskill.common.Limit;
 
 import com.daydreamdev.secondskill.common.utils.RedisPool;
 import com.daydreamdev.secondskill.common.utils.ScriptUtil;

@@ -74,7 +74,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.20</version> <!-- 使用最新版本或你所需的具体版本 -->
+      <version>1.18.30</version> <!-- 使用最新版本或你所需的具体版本 -->
       <scope>provided</scope>
     </dependency>
 

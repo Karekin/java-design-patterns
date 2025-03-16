@@ -53,10 +53,7 @@ public class RequestService {
    */
   public Request create(UUID uuid) {
     Optional<Request> optReq = requestRepository.findById(uuid);
-    if (!optReq.isEmpty()) {
-      return optReq.get();
-    }
-    return requestRepository.save(new Request(uuid));
+    return optReq.orElseGet(() -> requestRepository.save(new Request(uuid)));
   }
 
   /**

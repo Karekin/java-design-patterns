@@ -30,6 +30,7 @@ class AppTest {
     Request requestPending = new Request(uuid);
     Request requestStarted = new Request(uuid, Request.Status.STARTED);
     Request requestCompleted = new Request(uuid, Request.Status.COMPLETED);
+
     when(requestService.create(any())).thenReturn(requestPending);
     when(requestService.start(any())).thenReturn(requestStarted);
     when(requestService.complete(any())).thenReturn(requestCompleted);
