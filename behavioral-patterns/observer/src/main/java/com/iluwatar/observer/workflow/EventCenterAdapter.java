@@ -1,0 +1,47 @@
+package com.iluwatar.observer.workflow;
+
+import com.iluwatar.observer.workflow.enums.ResponseMode;
+import com.iluwatar.observer.workflow.model.ExecutableEvent;
+import org.springframework.stereotype.Service;
+
+import java.util.EnumSet;
+import java.util.Set;
+
+/**
+ *
+ */
+@Service
+public class EventCenterAdapter implements MessageBroker {
+    @Override
+    public Set<ResponseMode> getHandledEventModes() {
+        // 假设SpringEventAdapter可以处理任务创建和任务删除事件
+        return EnumSet.of(ResponseMode.SYNC_MULTI, ResponseMode.ASYNC_MULTI);
+    }
+
+    @Override
+    public void sendMessage(ExecutableEvent event) {
+        System.out.println("EventCenterAdapter: Publishing event - " + event.getMessage());
+        // 这里模拟发布事件到事件中心
+//        Map<String, List<String>> map = (Map<String, List<String>>) request.get("workflow");
+//        try {
+//            BusinessEventBuilder businessEventBuilder = new BusinessEventBuilder();
+//            EventType eventType = event.getEventType();
+//            businessEventBuilder.setSourceId(eventType.getSourceID());
+//            businessEventBuilder.setEventType(eventType.getEventType());
+//
+//            businessEventBuilder.setUserObject(map);
+//            businessEventBuilder.setTenantCode(InvocationInfoProxy.getTenantid());
+//            //如果需要租户默认token，tenantCode要传入yht租户id
+//            BusinessEvent businessEvent = businessEventBuilder.build();
+//            eventSendService.sendEvent(businessEvent);
+//        } catch (Exception e) {
+//            throw new BusinessException(e.getMessage());
+//        }
+    }
+
+//    public void registerListener(MessageListener listener) {
+//        // 这里模拟从事件中心接收事件
+//        Event receivedEvent = new Event(EventType.APPROVE, "Message from event center");
+//        listener.onMessageReceived(receivedEvent, null, null);
+//    }
+}

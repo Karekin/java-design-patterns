@@ -58,168 +58,40 @@
     <sonar.projectName>Java Design Patterns</sonar.projectName>
   </properties>
   <modules>
-    <module>collecting-parameter</module>
-    <module>monitor</module>
-    <module>adapter</module>
-    <module>bridge</module>
-    <module>composite</module>
-    <module>data-access-object</module>
-    <module>data-mapper</module>
-    <module>decorator</module>
-    <module>facade</module>
-    <module>flyweight</module>
-    <module>proxy</module>
-    <module>chain-of-responsibility</module>
-    <module>command</module>
-    <module>interpreter</module>
-    <module>iterator</module>
-    <module>mediator</module>
-    <module>memento</module>
-    <module>model-view-presenter</module>
-    <module>observer</module>
-    <module>state</module>
-    <module>strategy</module>
-    <module>template-method</module>
-    <module>version-number</module>
-    <module>visitor</module>
-    <module>double-checked-locking</module>
-    <module>servant</module>
-    <module>service-locator</module>
-    <module>null-object</module>
-    <module>event-aggregator</module>
-    <module>callback</module>
-    <module>execute-around</module>
-    <module>property</module>
-    <module>intercepting-filter</module>
-    <module>producer-consumer</module>
-    <module>pipeline</module>
-    <module>poison-pill</module>
-    <module>lazy-loading</module>
-    <module>service-layer</module>
-    <module>specification</module>
-    <module>tolerant-reader</module>
-    <module>model-view-controller</module>
-    <module>flux</module>
-    <module>double-dispatch</module>
-    <module>resource-acquisition-is-initialization</module>
-    <module>twin</module>
-    <module>private-class-data</module>
-    <module>object-pool</module>
-    <module>dependency-injection</module>
-    <module>front-controller</module>
-    <module>repository</module>
-    <module>async-method-invocation</module>
-    <module>monostate</module>
-    <module>business-delegate</module>
-    <module>half-sync-half-async</module>
-    <module>layered-architecture</module>
-    <module>fluent-interface</module>
-    <module>reactor</module>
-    <module>caching</module>
-    <module>delegation</module>
-    <module>event-driven-architecture</module>
-    <module>microservices-api-gateway</module>
-    <module>feature-toggle</module>
-    <module>value-object</module>
-    <module>monad</module>
-    <module>mute-idiom</module>
-    <module>hexagonal-architecture</module>
-    <module>abstract-document</module>
-    <module>microservices-aggregrator</module>
-    <module>promise</module>
-    <module>page-controller</module>
-    <module>page-object</module>
-    <module>event-based-asynchronous</module>
-    <module>event-queue</module>
-    <module>queue-based-load-leveling</module>
-    <module>data-bus</module>
-    <module>converter</module>
-    <module>guarded-suspension</module>
-    <module>balking</module>
-    <module>extension-objects</module>
-    <module>marker-interface</module>
-    <module>command-query-responsibility-segregation</module>
-    <module>event-sourcing</module>
-    <module>data-transfer-object</module>
-    <module>throttling</module>
-    <module>unit-of-work</module>
-    <module>partial-response</module>
-    <module>retry</module>
-    <module>dirty-flag</module>
-    <module>trampoline</module>
-    <module>ambassador</module>
-    <module>acyclic-visitor</module>
-    <module>collection-pipeline</module>
-    <module>master-worker</module>
-    <module>spatial-partition</module>
-    <module>commander</module>
-    <module>type-object</module>
-    <module>bytecode</module>
-    <module>leader-election</module>
-    <module>data-locality</module>
-    <module>subclass-sandbox</module>
-    <module>circuit-breaker</module>
-    <module>role-object</module>
-    <module>saga</module>
-    <module>double-buffer</module>
-    <module>sharding</module>
-    <module>game-loop</module>
-    <module>combinator</module>
-    <module>update-method</module>
-    <module>leader-followers</module>
-    <module>strangler</module>
-    <module>arrange-act-assert</module>
-    <module>transaction-script</module>
-    <module>registry</module>
-    <module>filterer</module>
-    <module>separated-interface</module>
-    <module>special-case</module>
-    <module>parameter-object</module>
-    <module>active-object</module>
-<!--    <module>model-view-viewmodel</module>-->
-    <module>composite-entity</module>
-    <module>table-module</module>
-    <module>presentation-model</module>
-    <module>lockable-object</module>
-    <module>fanout-fanin</module>
-    <module>domain-model</module>
-    <module>composite-view</module>
-    <module>metadata-mapping</module>
-    <module>service-to-worker</module>
-    <module>client-session</module>
-    <module>model-view-intent</module>
-    <module>currying</module>
-    <module>serialized-entity</module>
-    <module>identity-map</module>
-    <module>component</module>
-    <module>context-object</module>
-    <module>optimistic-offline-lock</module>
-    <module>curiously-recurring-template-pattern</module>
-    <module>microservices-log-aggregation</module>
-    <module>anti-corruption-layer</module>
-    <module>health-check</module>
-    <module>notification</module>
-    <module>single-table-inheritance</module>
-    <module>dynamic-proxy</module>
-    <module>gateway</module>
-    <module>serialized-lob</module>
-    <module>server-session</module>
-    <module>virtual-proxy</module>
-    <module>function-composition</module>
-    <module>microservices-distributed-tracing</module>
-    <module>microservices-client-side-ui-composition</module>
-    <module>microservices-idempotent-consumer</module>
-    <module>monolithic-architecture</module>
-    <module>session-facade</module>
-    <module>templateview</module>
-    <module>money</module>
-    <module>table-inheritance</module>
-    <module>bloc</module>
-    <module>map-reduce</module>
-    <module>seconds-kill</module>
-      <module>creational-patterns</module>
-      <module>structural-patterns</module>
+        <!-- 创建型模式：封装对象的创建逻辑，隐藏实例化过程，降低系统的耦合性，提高灵活性与扩展性 -->
+        <module>creational-patterns</module>
+
+        <!-- 结构型模式：定义类和对象的组合方式，使系统结构更加清晰，简化对象之间的依赖关系 -->
+        <module>structural-patterns</module>
+
+        <!-- 行为型模式：关注对象之间的通信和职责分配，定义对象如何协作以及职责如何明确分配 -->
+        <module>behavioral-patterns</module>
+
+        <!-- 并发与异步模式：解决并发环境下线程安全问题，以及异步任务的管理、调度和执行方式 -->
+        <module>concurrency-async-patterns</module>
+
+        <!-- 架构与设计原则：包含系统整体设计、架构风格、分层设计思想以及高层抽象原则 -->
+        <module>architecture-principles</module>
+
+        <!-- 数据访问与持久化模式：负责数据存储、访问、缓存和数据传输对象的设计，封装数据库交互细节 -->
+        <module>data-access-persistence-patterns</module>
+
+        <!-- 消息与通信模式：定义系统内外部通信的策略和消息交互机制，实现松散耦合、异步通信及事件驱动 -->
+        <module>messaging-communication-patterns</module>
+
+        <!-- 测试与开发辅助模式：提供面向测试、调试以及提高代码质量的辅助结构与方法，提升系统的可维护性 -->
+        <module>testing-development-patterns</module>
+
+        <!-- 数据访问与持久化模式：定义数据存储、数据访问策略与持久化的管理方法，降低业务逻辑与数据存储层的耦合 -->
+        <module>data-access-persistence-patterns</module>
+
+        <!-- 函数式与现代模式：引入函数式编程思想、组合式设计与灵活扩展的现代设计模式，提高代码可维护性 -->
+        <module>functional-modern-patterns</module>
+
+        <!-- 特殊与其他模式：适用于特定领域（如实时系统、游戏开发）、特殊场景的模式，不便归入其他明确分类 -->
+        <module>others-special-patterns</module>
   </modules>
+
   <repositories>
     <repository>
       <id>jitpack.io</id>
