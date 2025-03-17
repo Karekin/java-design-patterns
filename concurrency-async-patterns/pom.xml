@@ -7,9 +7,27 @@
         <version>1.26.0-SNAPSHOT</version>
     </parent>
     <artifactId>concurrency-async-patterns</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <name>concurrency-async-patterns Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>active-object</module>
+        <module>async-method-invocation</module>
+        <module>balking</module>
+        <module>event-based-asynchronous</module>
+        <module>event-driven-architecture</module>
+        <module>event-queue</module>
+        <module>guarded-suspension</module>
+        <module>half-sync-half-async</module>
+        <module>leader-followers</module>
+        <module>map-reduce</module>
+        <module>monitor</module>
+        <module>producer-consumer</module>
+        <module>promise</module>
+        <module>reactor</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

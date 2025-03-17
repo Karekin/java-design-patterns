@@ -29,7 +29,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.iluwatar</groupId>
-    <artifactId>java-design-patterns</artifactId>
+    <artifactId>architecture-principles</artifactId>
     <version>1.26.0-SNAPSHOT</version>
   </parent>
   <artifactId>parameter-object</artifactId>

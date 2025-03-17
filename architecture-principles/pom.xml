@@ -31,6 +31,9 @@
         <module>microservices-client-side-ui-composition</module>
         <module>session-facade</module>
         <module>microservices-client-side-ui-composition</module>
+        <module>microservices-distributed-tracing</module>
+        <module>microservices-idempotent-consumer</module>
+        <module>microservices-log-aggregation</module>
         <module>strangler</module>
         <module>commander</module>
         <module>context-object</module>
@@ -67,7 +70,15 @@
         <module>session-facade</module>
         <module>strangler</module>
         <module>type-object</module>
-        <module>pom.xml</module>
+        <module>model-view-controller</module>
+        <module>model-view-intent</module>
+        <module>model-view-presenter</module>
+        <module>model-view-viewmodel</module>
+        <module>monolithic-architecture</module>
+        <module>page-controller</module>
+        <module>page-object</module>
+        <module>parameter-object</module>
+        <module>presentation-model</module>
     </modules>
     <dependencies>
         <dependency>

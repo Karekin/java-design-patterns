@@ -7,9 +7,32 @@
         <version>1.26.0-SNAPSHOT</version>
     </parent>
     <artifactId>data-access-persistence-patterns</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <name>data-access-persistence-patterns Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>caching</module>
+        <module>data-access-object</module>
+        <module>data-bus</module>
+        <module>data-locality</module>
+        <module>data-mapper</module>
+        <module>data-transfer-object</module>
+        <module>identity-map</module>
+        <module>lazy-loading</module>
+        <module>metadata-mapping</module>
+        <module>private-class-data</module>
+        <module>repository</module>
+        <module>serialized-entity</module>
+        <module>serialized-lob</module>
+        <module>sharding</module>
+        <module>single-table-inheritance</module>
+        <module>table-inheritance</module>
+        <module>table-module</module>
+        <module>unit-of-work</module>
+        <module>version-number</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

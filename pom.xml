@@ -90,6 +90,8 @@
 
         <!-- 特殊与其他模式：适用于特定领域（如实时系统、游戏开发）、特殊场景的模式，不便归入其他明确分类 -->
         <module>others-special-patterns</module>
+
+        <module>game-real-time-patterns</module>
   </modules>
 
   <repositories>

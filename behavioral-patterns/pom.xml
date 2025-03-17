@@ -7,9 +7,47 @@
         <version>1.26.0-SNAPSHOT</version>
     </parent>
     <artifactId>behavioral-patterns</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <name>behavioral-patterns Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
+    <modules>
+        <module>acyclic-visitor</module>
+        <module>callback</module>
+        <module>chain-of-responsibility</module>
+        <module>collecting-parameter</module>
+        <module>command</module>
+        <module>command-query-responsibility-segregation</module>
+        <module>delegation</module>
+        <module>double-checked-locking</module>
+        <module>double-dispatch</module>
+        <module>execute-around</module>
+        <module>fluent-interface</module>
+        <module>interpreter</module>
+        <module>iterator</module>
+        <module>marker-interface</module>
+        <module>mediator</module>
+        <module>memento</module>
+        <module>monostate</module>
+        <module>null-object</module>
+        <module>observer</module>
+        <module>optimistic-offline-lock</module>
+        <module>poison-pill</module>
+        <module>retry</module>
+        <module>role-object</module>
+        <module>saga</module>
+        <module>servant</module>
+        <module>specification</module>
+        <module>state</module>
+        <module>strategy</module>
+        <module>subclass-sandbox</module>
+        <module>template-method</module>
+        <module>throttling</module>
+        <module>transaction-script</module>
+        <module>update-method</module>
+        <module>visitor</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
