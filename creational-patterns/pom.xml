@@ -32,7 +32,16 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- Lombok 依赖 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version> <!-- 最新版本请检查 Maven Central -->
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
+
     <build>
         <finalName>creational-patterns</finalName>
     </build>

@@ -27,4 +27,13 @@ package com.iluwatar.producer.consumer;
 /**
  * Class take part of an {@link Producer}-{@link Consumer} exchange.
  */
-public record Item(String producer, int id) {}
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+public class Item {
+  private final int id;
+  private final String producer;
+}
+

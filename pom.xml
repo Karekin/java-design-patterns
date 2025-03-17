@@ -61,37 +61,37 @@
         <!-- 创建型模式：封装对象的创建逻辑，隐藏实例化过程，降低系统的耦合性，提高灵活性与扩展性 -->
         <module>creational-patterns</module>
 
-        <!-- 结构型模式：定义类和对象的组合方式，使系统结构更加清晰，简化对象之间的依赖关系 -->
-        <module>structural-patterns</module>
+<!--        &lt;!&ndash; 结构型模式：定义类和对象的组合方式，使系统结构更加清晰，简化对象之间的依赖关系 &ndash;&gt;-->
+<!--        <module>structural-patterns</module>-->
 
-        <!-- 行为型模式：关注对象之间的通信和职责分配，定义对象如何协作以及职责如何明确分配 -->
-        <module>behavioral-patterns</module>
+<!--        &lt;!&ndash; 行为型模式：关注对象之间的通信和职责分配，定义对象如何协作以及职责如何明确分配 &ndash;&gt;-->
+<!--        <module>behavioral-patterns</module>-->
 
-        <!-- 并发与异步模式：解决并发环境下线程安全问题，以及异步任务的管理、调度和执行方式 -->
-        <module>concurrency-async-patterns</module>
+<!--        &lt;!&ndash; 并发与异步模式：解决并发环境下线程安全问题，以及异步任务的管理、调度和执行方式 &ndash;&gt;-->
+<!--        <module>concurrency-async-patterns</module>-->
 
-        <!-- 架构与设计原则：包含系统整体设计、架构风格、分层设计思想以及高层抽象原则 -->
-        <module>architecture-principles</module>
+<!--        &lt;!&ndash; 架构与设计原则：包含系统整体设计、架构风格、分层设计思想以及高层抽象原则 &ndash;&gt;-->
+<!--        <module>architecture-principles</module>-->
 
-        <!-- 数据访问与持久化模式：负责数据存储、访问、缓存和数据传输对象的设计，封装数据库交互细节 -->
-        <module>data-access-persistence-patterns</module>
+<!--        &lt;!&ndash; 数据访问与持久化模式：负责数据存储、访问、缓存和数据传输对象的设计，封装数据库交互细节 &ndash;&gt;-->
+<!--        <module>data-access-persistence-patterns</module>-->
 
-        <!-- 消息与通信模式：定义系统内外部通信的策略和消息交互机制，实现松散耦合、异步通信及事件驱动 -->
-        <module>messaging-communication-patterns</module>
+<!--        &lt;!&ndash; 消息与通信模式：定义系统内外部通信的策略和消息交互机制，实现松散耦合、异步通信及事件驱动 &ndash;&gt;-->
+<!--        <module>messaging-communication-patterns</module>-->
 
-        <!-- 测试与开发辅助模式：提供面向测试、调试以及提高代码质量的辅助结构与方法，提升系统的可维护性 -->
-        <module>testing-development-patterns</module>
+<!--        &lt;!&ndash; 测试与开发辅助模式：提供面向测试、调试以及提高代码质量的辅助结构与方法，提升系统的可维护性 &ndash;&gt;-->
+<!--        <module>testing-development-patterns</module>-->
 
-        <!-- 数据访问与持久化模式：定义数据存储、数据访问策略与持久化的管理方法，降低业务逻辑与数据存储层的耦合 -->
-        <module>data-access-persistence-patterns</module>
+<!--        &lt;!&ndash; 数据访问与持久化模式：定义数据存储、数据访问策略与持久化的管理方法，降低业务逻辑与数据存储层的耦合 &ndash;&gt;-->
+<!--        <module>data-access-persistence-patterns</module>-->
 
-        <!-- 函数式与现代模式：引入函数式编程思想、组合式设计与灵活扩展的现代设计模式，提高代码可维护性 -->
-        <module>functional-modern-patterns</module>
+<!--        &lt;!&ndash; 函数式与现代模式：引入函数式编程思想、组合式设计与灵活扩展的现代设计模式，提高代码可维护性 &ndash;&gt;-->
+<!--        <module>functional-modern-patterns</module>-->
 
-        <!-- 特殊与其他模式：适用于特定领域（如实时系统、游戏开发）、特殊场景的模式，不便归入其他明确分类 -->
-        <module>others-special-patterns</module>
+<!--        &lt;!&ndash; 特殊与其他模式：适用于特定领域（如实时系统、游戏开发）、特殊场景的模式，不便归入其他明确分类 &ndash;&gt;-->
+<!--        <module>others-special-patterns</module>-->
 
-        <module>game-real-time-patterns</module>
+<!--        <module>game-real-time-patterns</module>-->
   </modules>
 
   <repositories>
@@ -173,8 +173,8 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
+            <source>17</source>
+            <target>17</target>
           </configuration>
         </plugin>
         <plugin>
