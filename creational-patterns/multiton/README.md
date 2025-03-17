@@ -1,44 +1,48 @@
+# Java 中的多例模式：掌握高级单例变体
+
 ---
-title: "Multiton Pattern in Java: Mastering Advanced Singleton Variants"
-shortTitle: Multiton
-description: "Learn how the Multiton pattern in Java ensures unique named instances and provides a global access point. Discover implementation tips and code examples."
-category: Creational
-language: en
+
+title: "Java 中的多例模式：掌握高级单例变体"
+shortTitle: 多例
+description: "了解 Java 中的多例模式如何确保唯一命名的实例并提供全局访问点。通过实现提示和代码示例来学习。"
+category: 创建型
+language: zh
 tag:
-  - Decoupling
-  - Instantiation
-  - Object composition
+- 解耦
+- 实例化
+- 对象组合
+
 ---
 
-## Also known as
+## 又称
 
-* Registry of Singletons
+* 单例注册表
 
-## Intent of Multiton Design Pattern
+## 多例设计模式的意图
 
-The Multiton pattern in Java ensures a class has only unique named instances, providing a global point of access to them. Each named instance is accessed through a unique key, making it an essential part of Java design patterns.
+Java 中的多例模式确保一个类只有唯一命名的实例，并提供一个全局访问点。每个命名实例通过唯一键访问，使其成为 Java 设计模式的重要组成部分。
 
-## Detailed Explanation of Multiton Pattern with Real-World Examples
+## 带有实际案例的多例模式详细解释
 
-Real-world example
+现实世界中的例子
 
-> A real-world example of the Multiton pattern is a printer management system in a large office. In this scenario, the office has several printers, each serving a different department. Instead of creating a new printer object every time a printing request is made, the system uses the Multiton pattern to ensure that each department has exactly one printer instance. When a printing request comes from a specific department, the system checks the registry of printer instances and retrieves the existing printer for that department. If no printer exists for that department, it creates one, registers it, and then returns it. This ensures efficient management of printer resources and prevents unnecessary creation of multiple printer instances for the same department.       
+> 多例模式的一个现实例子是大型办公室中的打印机管理系统。办公室中有多个打印机，每个打印机服务于不同的部门。系统不每次打印请求都创建新的打印机对象，而是使用多例模式确保每个部门只有一个打印机实例。当特定部门的打印请求到来时，系统会检查打印机实例注册表，并检索该部门现有的打印机。如果该部门没有打印机，则创建一个，注册并返回。这确保了打印机资源的高效管理，避免了为同一部门创建多个不必要的打印机实例。
 
-In plain words
+直白地说
 
-> The Multiton pattern is an extension of the Singleton pattern, offering a way to have a map of unique named instances instead of a single instance. This makes it a valuable Java design pattern for managing named instances efficiently.
+> 多例模式是单例模式的扩展，提供了一种拥有唯一命名实例映射的方法，而不仅仅是一个实例。这使其成为高效管理命名实例的宝贵 Java 设计模式。
 
-Wikipedia says
+维基百科说
 
-> In software engineering, the multiton pattern is a design pattern which generalizes the singleton pattern. Whereas the singleton allows only one instance of a class to be created, the multiton pattern allows for the controlled creation of multiple instances, which it manages through the use of a map.
+> 在软件工程中，多例模式是一种设计模式，它推广了单例模式。单例模式只允许创建一个类的一个实例，而多例模式允许多个实例的受控创建，并通过映射进行管理。
 
-## Programmatic Example of Multiton Pattern in Java
+## Java 中多例模式的编程示例
 
-In this tutorial, we’ll explore how to implement the Multiton pattern in Java, covering its structure, benefits, and providing code examples. By following these implementation tips, you’ll be able to effectively utilize this Java design pattern.
+在本教程中，我们将探讨如何在 Java 中实现多例模式，涵盖其结构、优势，并提供代码示例。通过遵循这些实现提示，你将能够有效利用这一 Java 设计模式。
 
-The Nazgûl, also called ringwraiths or the Nine Riders, are Sauron's most terrible servants. By definition, there's always nine of them.
+纳兹古尔（Nazgûl），也被称为戒灵或九骑手，是索伦最可怕的手下。按定义，他们总是有九个。
 
-`Nazgul` is the multiton class.
+`Nazgul` 是多例类。
 
 ```java
 public enum NazgulName {
@@ -76,12 +80,12 @@ public final class Nazgul {
 }
 ```
 
-And here's how we access the `Nazgul` instances.
+以下是访问 `Nazgul` 实例的方法。
 
 ```java
   public static void main(String[] args) {
-    // eagerly initialized multiton
-    LOGGER.info("Printing out eagerly initialized multiton contents");
+    // 饿汉式初始化的多例
+    LOGGER.info("打印饿汉式初始化的多例内容");
     LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
     LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
     LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
@@ -92,8 +96,8 @@ And here's how we access the `Nazgul` instances.
     LOGGER.info("REN={}", Nazgul.getInstance(NazgulName.REN));
     LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
 
-    // enum multiton
-    LOGGER.info("Printing out enum-based multiton contents");
+    // 枚举多例
+    LOGGER.info("打印基于枚举的多例内容");
     LOGGER.info("KHAMUL={}", NazgulEnum.KHAMUL);
     LOGGER.info("MURAZOR={}", NazgulEnum.MURAZOR);
     LOGGER.info("DWAR={}", NazgulEnum.DWAR);
@@ -106,10 +110,10 @@ And here's how we access the `Nazgul` instances.
 }
 ```
 
-Program output:
+程序输出：
 
 ```
-15:16:10.597 [main] INFO com.iluwatar.multiton.App -- Printing out eagerly initialized multiton contents
+15:16:10.597 [main] INFO com.iluwatar.multiton.App -- 打印饿汉式初始化的多例内容
 15:16:10.600 [main] INFO com.iluwatar.multiton.App -- KHAMUL=com.iluwatar.multiton.Nazgul@4141d797
 15:16:10.600 [main] INFO com.iluwatar.multiton.App -- MURAZOR=com.iluwatar.multiton.Nazgul@38cccef
 15:16:10.600 [main] INFO com.iluwatar.multiton.App -- DWAR=com.iluwatar.multiton.Nazgul@5679c6c6
@@ -119,7 +123,7 @@ Program output:
 15:16:10.600 [main] INFO com.iluwatar.multiton.App -- ADUNAPHEL=com.iluwatar.multiton.Nazgul@64b8f8f4
 15:16:10.600 [main] INFO com.iluwatar.multiton.App -- REN=com.iluwatar.multiton.Nazgul@2db0f6b2
 15:16:10.600 [main] INFO com.iluwatar.multiton.App -- UVATHA=com.iluwatar.multiton.Nazgul@3cd1f1c8
-15:16:10.600 [main] INFO com.iluwatar.multiton.App -- Printing out enum-based multiton contents
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- 打印基于枚举的多例内容
 15:16:10.601 [main] INFO com.iluwatar.multiton.App -- KHAMUL=KHAMUL
 15:16:10.601 [main] INFO com.iluwatar.multiton.App -- MURAZOR=MURAZOR
 15:16:10.601 [main] INFO com.iluwatar.multiton.App -- DWAR=DWAR
@@ -131,36 +135,36 @@ Program output:
 15:16:10.601 [main] INFO com.iluwatar.multiton.App -- UVATHA=UVATHA
 ```
 
-## When to Use the Multiton Pattern in Java
+## 在 Java 中何时使用多例模式
 
-Use cases for the Multiton pattern in Java
+Java 中多例模式的使用场景
 
-* A class must have named instances, but only one instance for each unique key.
-* Global access to these instances is necessary without requiring global variables.
-* You want to manage shared resources categorized by key.
+* 一个类必须有命名实例，但每个唯一键只能有一个实例。
+* 需要全局访问这些实例，而无需使用全局变量。
+* 想要按键管理共享资源。
 
-## Real-World Applications of Multiton Pattern in Java
+## 多例模式在 Java 中的实际应用
 
-* Managing database connections in different contexts.
-* Configuration settings for different environments in an application.
+* 在不同上下文中管理数据库连接。
+* 在应用程序中为不同环境管理配置设置。
 
-## Benefits and Trade-offs of Multiton Pattern
+## 多例模式的优势与权衡
 
-Benefits:
+优势：
 
-* Ensures controlled access to instances based on key.
-* Reduces global state usage by encapsulating instance management within the pattern.
+* 基于键确保对实例的受控访问。
+* 通过封装实例管理减少全局状态的使用。
 
-Trade-offs:
+权衡：
 
-* Increased memory usage if not managed properly due to multiple instances.
-* Potential issues with concurrency if not implemented with thread safety in mind.
+* 如果管理不当，由于多个实例可能导致内存使用增加。
+* 如果实现时未考虑线程安全性，可能会出现并发问题。
 
-## Related Java Design Patterns
+## 相关 Java 设计模式
 
-* [Singleton](https://java-design-patterns.com/patterns/singleton/): Multiton can be seen as an extension of the Singleton pattern where Singleton allows only one instance of a class, Multiton allows one instance per key.
-* [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Multiton uses a method to create or retrieve instances, similar to how a Factory Method controls object creation.
+* [单例](https://java-design-patterns.com/patterns/singleton/)：多例可以看作是单例模式的扩展，单例模式只允许一个类的一个实例，而多例模式允许多个实例，每个实例对应一个键。
+* [工厂方法](https://java-design-patterns.com/patterns/factory-method/)：多例使用一种方法来创建或检索实例，类似于工厂方法如何控制对象的创建。
 
-## References and Credits
+## 参考文献和致谢
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [设计模式：可重用面向对象软件的元素](https://amzn.to/3w0pvKI)

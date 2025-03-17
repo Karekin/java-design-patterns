@@ -1,36 +1,40 @@
+# Java 中的工厂模式：简化对象创建
+
 ---
-title: "Factory Pattern in Java: Streamlining Object Creation"
-shortTitle: Factory
-description: "Learn the Factory Design Pattern in Java with detailed examples and explanations. Understand how to create flexible and scalable code using the Factory Pattern. Ideal for developers looking to improve their object-oriented design skills."
-category: Creational
-language: en
+
+title: "Java 中的工厂模式：简化对象创建"
+shortTitle: 工厂
+description: "通过详细的示例和解释，学习 Java 中的工厂设计模式。了解如何使用工厂模式创建灵活且可扩展的代码。适用于希望提高面向对象设计技能的开发人员。"
+category: 创建型
+language: zh
 tag:
-  - Abstraction
-  - Encapsulation
-  - Gang of Four
-  - Instantiation
-  - Polymorphism
+- 抽象
+- 封装
+- 四人组
+- 实例化
+- 多态
+
 ---
 
-## Intent of Factory Design Pattern
+## 工厂设计模式的意图
 
-The Factory Design Pattern in Java is a creational pattern that defines an interface for creating an object but allows subclasses to alter the type of objects that will be created. This pattern promotes flexibility and scalability in your codebase.
+Java 中的工厂设计模式是一种创建型模式，它定义了一个创建对象的接口，但允许子类决定将创建的对象类型。这种模式有助于提高代码库的灵活性和可扩展性。
 
-## Detailed Explanation of Factory Pattern with Real-World Examples
+## 带有实际案例的工厂模式详细解释
 
-Real-world example
+现实世界中的例子
 
-> Imagine a scenario in a bakery where different types of cakes are made using a Factory Design Pattern. The bakery's `CakeFactory` handles the creation process, allowing easy addition of new cake types without altering the core cake-making process. The `CakeFactory` can produce various types of cakes such as chocolate cake, vanilla cake, and strawberry cake. Instead of the bakery staff manually selecting ingredients and following specific recipes for each type of cake, they use the `CakeFactory` to handle the process. The customer simply requests a cake type, and the `CakeFactory` determines the appropriate ingredients and recipe to use, then creates the specific type of cake. This setup allows the bakery to easily add new cake types without modifying the core cake-making process, promoting flexibility and scalability.
+> 想象一家面包店使用工厂设计模式制作不同类型的蛋糕。面包店的 `CakeFactory` 负责整个制作过程，可以轻松添加新的蛋糕类型，而无需改变核心的蛋糕制作流程。`CakeFactory` 可以制作各种类型的蛋糕，如巧克力蛋糕、香草蛋糕和草莓蛋糕。面包店员工无需手动选择配料或遵循每种蛋糕的具体配方，而是使用 `CakeFactory` 来处理整个过程。顾客只需提出蛋糕类型的需求，`CakeFactory` 会确定使用哪些配料和配方，然后制作出特定类型的蛋糕。这种设置使得面包店可以在不修改核心蛋糕制作流程的情况下轻松添加新的蛋糕类型，从而实现灵活性和可扩展性。
 
-Wikipedia says
+维基百科说
 
-> Factory is an object for creating other objects – formally a factory is a function or method that returns objects of a varying prototype or class.
+> 工厂是一个用于创建其他对象的对象——正式来说，工厂是一个返回具有不同原型或类的对象的函数或方法。
 
-## Programmatic Example of Factory Pattern in Java
+## Java 中工厂模式的编程示例
 
-Imagine an alchemist who is about to manufacture coins. The alchemist must be able to create both gold and copper coins and switching between them must be possible without modifying the existing source code. The factory pattern makes it possible by providing a static construction method which can be called with relevant parameters.
+想象一个炼金术士即将制造硬币。他必须能够创建金币和铜币，并且需要能够在它们之间切换，而无需修改现有源代码。工厂模式通过提供一个可以调用的静态构造方法来实现这一点，该方法可以带入相关参数。
 
-In Java, you can implement the Factory Pattern by defining an interface `Coin` and its implementations `GoldCoin` and `CopperCoin`. The `CoinFactory` class provides a static method `getCoin` to create coin objects based on the type.
+在 Java 中，可以通过定义一个接口 `Coin` 及其实现类 `GoldCoin` 和 `CopperCoin` 来实现工厂模式。`CoinFactory` 类提供了一个静态方法 `getCoin`，用于根据类型创建硬币对象。
 
 ```java
 public interface Coin {
@@ -41,7 +45,7 @@ public interface Coin {
 ```java
 public class GoldCoin implements Coin {
 
-  static final String DESCRIPTION = "This is a gold coin.";
+  static final String DESCRIPTION = "这是一个金币。";
 
   @Override
   public String getDescription() {
@@ -53,7 +57,7 @@ public class GoldCoin implements Coin {
 ```java
 public class CopperCoin implements Coin {
    
-  static final String DESCRIPTION = "This is a copper coin.";
+  static final String DESCRIPTION = "这是一个铜币。";
 
   @Override
   public String getDescription() {
@@ -62,7 +66,7 @@ public class CopperCoin implements Coin {
 }
 ```
 
-Enumeration below represents types of coins that we support (`GoldCoin` and `CopperCoin`).
+下面的枚举表示我们支持的硬币类型（`GoldCoin` 和 `CopperCoin`）。
 
 ```java
 @RequiredArgsConstructor
@@ -76,7 +80,7 @@ public enum CoinType {
 }
 ```
 
-Then we have the static method `getCoin` to create coin objects encapsulated in the factory class `CoinFactory`.
+然后，我们有静态方法 `getCoin`，用于在工厂类 `CoinFactory` 中创建硬币对象。
 
 ```java
 public class CoinFactory {
@@ -87,11 +91,11 @@ public class CoinFactory {
 }
 ```
 
-Now, in the client code, we can generate various types of coins using the factory class.
+现在，在客户端代码中，我们可以使用工厂类生成各种类型的硬币。
 
 ```java
 public static void main(String[] args) {
-    LOGGER.info("The alchemist begins his work.");
+    LOGGER.info("炼金术士开始工作。");
     var coin1 = CoinFactory.getCoin(CoinType.COPPER);
     var coin2 = CoinFactory.getCoin(CoinType.GOLD);
     LOGGER.info(coin1.getDescription());
@@ -99,52 +103,52 @@ public static void main(String[] args) {
 }
 ```
 
-Program output:
+程序输出：
 
 ```
-06:19:53.530 [main] INFO com.iluwatar.factory.App -- The alchemist begins his work.
-06:19:53.533 [main] INFO com.iluwatar.factory.App -- This is a copper coin.
-06:19:53.533 [main] INFO com.iluwatar.factory.App -- This is a gold coin.
+06:19:53.530 [main] INFO com.iluwatar.factory.App -- 炼金术士开始工作。
+06:19:53.533 [main] INFO com.iluwatar.factory.App -- 这是一个铜币。
+06:19:53.533 [main] INFO com.iluwatar.factory.App -- 这是一个金币。
 ```
 
-## When to Use the Factory Pattern in Java
+## 在 Java 中何时使用工厂模式
 
-* Use the Factory Design Pattern in Java when the class does not know beforehand the exact types and dependencies of the objects it needs to create.
-* When a method returns one of several possible classes that share a common super class and wants to encapsulate the logic of which object to create.
-* The pattern is commonly used when designing frameworks or libraries to give the best flexibility and isolation from concrete class types.
+* 当类在创建对象之前不知道所需的精确类型和依赖关系时，使用工厂设计模式。
+* 当方法返回共享公共超类的几种可能类之一，并且希望封装创建哪个对象的逻辑时。
+* 该模式通常用于设计框架或库，以提供最大的灵活性，并隔离具体类类型。
 
-## Real-World Applications of Factory Pattern in Java
+## 工厂模式在 Java 中的实际应用
 
 * [java.util.Calendar#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 * [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
 * [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
 * [java.nio.charset.Charset#forName()](https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html#forName-java.lang.String-)
-* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](https://docs.oracle.com/javase/8/docs/api/java/net/URLStreamHandlerFactory.html) (returns different singleton objects, depending on a protocol)
+* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](https://docs.oracle.com/javase/8/docs/api/java/net/URLStreamHandlerFactory.html)（根据协议返回不同的单例对象）
 * [java.util.EnumSet#of()](https://docs.oracle.com/javase/8/docs/api/java/util/EnumSet.html#of(E))
-* [javax.xml.bind.JAXBContext#createMarshaller()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--) and other similar methods.
-* JavaFX uses Factory patterns for creating various UI controls tailored to the specifics of the user's environment.
+* [javax.xml.bind.JAXBContext#createMarshaller()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--) 和其他类似的方法。
+* JavaFX 使用工厂模式创建各种 UI 控件，以适应用户环境的具体需求。
 
-## Benefits and Trade-offs of Factory Pattern
+## 工厂模式的优势与权衡
 
-Benefits:
+优势：
 
-* Implementing the Factory Pattern in your Java application reduces coupling between the implementation and the classes it uses.
-* Supports the [Open/Closed Principle](https://java-design-patterns.com/principles/#open-closed-principle), as the system can introduce new types without changing existing code.
+* 在 Java 应用程序中实现工厂模式可以减少实现与所用类之间的耦合。
+* 支持 [开闭原则](https://java-design-patterns.com/principles/#open-closed-principle)，因为系统可以在不更改现有代码的情况下引入新类型。
 
-Trade-offs:
+权衡：
 
-* The code can become more complicated due to the introduction of multiple additional classes.
-* Overuse can make the code less readable if the underlying complexity of the object creation is low or unnecessary.
+* 由于引入了多个额外的类，代码可能会变得更加复杂。
+* 如果对象创建的底层复杂性较低或不必要，过度使用会使代码的可读性降低。
 
-## Related Java Design Patterns
+## 相关 Java 设计模式
 
-* [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Can be considered a kind of Factory that works with groups of products.
-* [Singleton](https://java-design-patterns.com/patterns/singleton/): Often used in conjunction with Factory to ensure that a class has only one instance.
-* [Builder](https://java-design-patterns.com/patterns/builder/): Separates the construction of a complex object from its representation, similar to how factories manage instantiation.
-* [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/): Is a factory of immutable content with separated builder and factory interfaces.
+* [抽象工厂](https://java-design-patterns.com/patterns/abstract-factory/)：可以视为一种处理产品组的工厂。
+* [单例](https://java-design-patterns.com/patterns/singleton/)：通常与工厂结合使用，以确保类只有一个实例。
+* [建造者](https://java-design-patterns.com/patterns/builder/)：将复杂对象的构建与其表示分离，类似于工厂管理实例化的方式。
+* [工厂套件](https://java-design-patterns.com/patterns/factory-kit/)：具有分离的构建器和工厂接口的不可变内容的工厂。
 
-## References and Credits
+## 参考文献和致谢
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0Rk5y)
+* [设计模式：可重用面向对象软件的元素](https://amzn.to/3w0Rk5y)
 * [Effective Java](https://amzn.to/4cGk2Jz)
-* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3UpTLrG)
+* [Head First 设计模式：构建可扩展和可维护的面向对象软件](https://amzn.to/3UpTLrG)

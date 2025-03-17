@@ -1,52 +1,56 @@
+# Java 中的建造者模式：清晰构建自定义对象
+
 ---
-title: "Builder Pattern in Java: Crafting Custom Objects with Clarity"
-shortTitle: Builder
-description: "Discover the Builder design pattern in Java, a powerful creational pattern that simplifies object construction. Learn how to separate the construction of a complex object from its representation with practical examples and use cases."
-category: Creational
-language: en
+
+title: "Java 中的建造者模式：清晰构建自定义对象"
+shortTitle: 建造者
+description: "了解 Java 中的建造者设计模式，这是一种强大的创建型模式，能够简化对象的构建过程。学习如何将复杂对象的构建与其表示分离，并通过实际案例和应用场景进行讲解。"
+category: 创建型
+language: zh
 tag:
-  - Gang of Four
-  - Instantiation
-  - Object composition
+- 四人组
+- 实例化
+- 对象组合
+
 ---
 
-## Intent of Builder Design Pattern
+## 建造者设计模式的意图
 
-The Builder design pattern in Java, a fundamental creational pattern, allows for the step-by-step construction of complex objects. It separates the construction of a complex object from its representation so that the same construction process can create different representations.
+Java 中的建造者设计模式是一种基础的创建型模式，它允许逐步构建复杂对象。它将复杂对象的构建与其表示分离，以便相同的构建过程可以创建不同的表示。
 
-## Detailed Explanation of Builder Pattern with Real-World Examples
+## 带有实际案例的建造者模式详细解释
 
-Real-world example
+现实世界中的例子
 
-> The Java Builder pattern is particularly useful in scenarios where object creation involves numerous parameters.
-> 
-> Imagine you are building a customizable sandwich at a deli. The Builder design pattern in this context would involve a SandwichBuilder that allows you to specify each component of the sandwich, such as the type of bread, meat, cheese, vegetables, and condiments. Instead of having to know how to construct the sandwich from scratch, you use the SandwichBuilder to add each desired component step-by-step, ensuring you get exactly the sandwich you want. This separation of construction from the final product representation ensures that the same construction process can yield different types of sandwiches based on the specified components.
+> 在对象创建涉及众多参数的情况下，Java 建造者模式特别有用。
+>
+> 想象一下，你在熟食店制作一个可定制的三明治。在这个上下文中，建造者设计模式将涉及一个三明治建造者（SandwichBuilder），它允许你指定三明治的每个组件，比如面包类型、肉类、奶酪、蔬菜和调味品。你无需从头开始构建三明治，而是使用三明治建造者逐步添加每个所需组件，确保你得到想要的三明治。这种构建与最终产品表示的分离确保了相同的构建过程可以根据指定的组件生成不同类型的三明治。
 
-In plain words
+直白地说
 
-> Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
+> 它允许你创建不同变体的对象，同时避免构造函数的污染。在可能存在多种对象变体或创建对象涉及许多步骤时非常有用。
 
-Wikipedia says
+维基百科说
 
-> The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor antipattern.
+> 建造者模式是一种对象创建软件设计模式，旨在为望远镜式构造函数反模式提供解决方案。
 
-With that in mind, let's explain what the telescoping constructor antipattern is. At some point, we have all encountered a constructor like the one below:
+考虑到这一点，让我们解释一下望远镜式构造函数反模式是什么。在某个时候，我们都遇到过像下面这样的构造函数：
 
 ```java
 public Hero(Profession profession,String name,HairType hairType,HairColor hairColor,Armor armor,Weapon weapon){
-    // Value assignments
+    // 值赋值
 }
 ```
 
-As you can see, the number of constructor parameters can quickly become overwhelming, making it difficult to understand their arrangement. Additionally, this list of parameters might continue to grow if you decide to add more options in the future. This is known as the telescoping constructor antipattern.
+如你所见，构造函数参数的数量可能会迅速变得难以承受，使其难以理解它们的排列。此外，如果你决定以后添加更多选项，这个参数列表可能会继续增长。这就是所谓的望远镜式构造函数反模式。
 
-## Programmatic Example of Builder Pattern in Java
+## Java 中建造者模式的编程示例
 
-In this Java Builder pattern example, we construct different types of `Hero` objects with varying attributes.
+在这个 Java 建造者模式示例中，我们构建具有不同属性的 `Hero` 对象。
 
-Imagine a character generator for a role-playing game. The simplest option is to let the computer generate the character for you. However, if you prefer to manually select character details such as profession, gender, hair color, etc., the character creation becomes a step-by-step process that concludes once all selections are made.
+想象一个角色扮演游戏的角色生成器。最简单的选项是让计算机为你生成角色。然而，如果你更喜欢手动选择角色细节，如职业、性别、头发颜色等，角色创建就变成了一个逐步的过程，一旦所有选择都完成，该过程即告结束。
 
-A more sensible approach is to use the Builder pattern. First, let's consider the `Hero` that we want to create:
+更合理的做法是使用建造者模式。首先，让我们考虑我们要创建的 `Hero`：
 
 ```java
 public final class Hero {
@@ -68,7 +72,7 @@ public final class Hero {
 }
 ```
 
-Then we have the `Builder`:
+然后我们有 `Builder`：
 
 ```java
   public static class Builder {
@@ -113,7 +117,7 @@ Then we have the `Builder`:
 }
 ```
 
-Then it can be used as:
+然后可以这样使用：
 
 ```java
   public static void main(String[] args) {
@@ -138,67 +142,67 @@ Then it can be used as:
 }
 ```
 
-Program output:
+程序输出：
 
 ```
-16:28:06.058 [main] INFO com.iluwatar.builder.App -- This is a mage named Riobard with black hair and wielding a dagger.
-16:28:06.060 [main] INFO com.iluwatar.builder.App -- This is a warrior named Amberjill with blond long curly hair wearing chain mail and wielding a sword.
-16:28:06.060 [main] INFO com.iluwatar.builder.App -- This is a thief named Desmond with bald head and wielding a bow.
+16:28:06.058 [main] INFO com.iluwatar.builder.App -- 这是一个名为 Riobard 的法师，黑色头发，手持匕首。
+16:28:06.060 [main] INFO com.iluwatar.builder.App -- 这是一个名为 Amberjill 的战士，金色长卷发，穿着锁子甲，手持剑。
+16:28:06.060 [main] INFO com.iluwatar.builder.App -- 这是一个名为 Desmond 的盗贼，秃头，手持弓。
 ```
 
-## Builder Pattern Class Diagram
+## 建造者模式类图
 
-![Builder](etc/builder.urm.png "Builder class diagram")
+![建造者](etc/builder.urm.png "建造者类图")
 
-## When to Use the Builder Pattern in Java
+## 在 Java 中何时使用建造者模式
 
-Use the Builder pattern when
+在以下情况下使用建造者模式
 
-* The Builder pattern is ideal for Java applications requiring complex object creation.
-* The algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
-* The construction process must allow different representations for the object that's constructed
-* It's particularly useful when a product requires a lot of steps to be created and when these steps need to be executed in a specific sequence
+* 建造者模式适用于需要创建复杂对象的 Java 应用程序。
+* 创建复杂对象的算法应独立于构成对象的部件以及它们的组装方式
+* 构建过程必须允许对构建的对象进行不同的表示
+* 当产品需要很多步骤来创建，并且这些步骤需要按特定顺序执行时特别有用
 
-## Builder Pattern Java Tutorials
+## Java 建造者模式教程
 
-* [Builder Design Pattern in Java (DigitalOcean)](https://www.journaldev.com/1425/builder-design-pattern-in-java)
-* [Builder (Refactoring Guru)](https://refactoring.guru/design-patterns/builder)
-* [Exploring Joshua Bloch’s Builder design pattern in Java (Java Magazine)](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)
+* [Java 中的建造者设计模式 (DigitalOcean)](https://www.journaldev.com/1425/builder-design-pattern-in-java)
+* [建造者 (Refactoring Guru)](https://refactoring.guru/design-patterns/builder)
+* [探索 Joshua Bloch 的 Java 中的建造者设计模式 (Java Magazine)](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)
 
-## Real-World Applications of Builder Pattern in Java
+## Java 中建造者模式的实际应用
 
-* StringBuilder in Java for constructing strings.
-* java.lang.StringBuffer used to create mutable string objects.
-* Java.nio.ByteBuffer as well as similar buffers such as FloatBuffer, IntBuffer, and others
-* javax.swing.GroupLayout.Group#addComponent()
-* Various GUI builders in IDEs that construct UI components.
-* All implementations of [java.lang.Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html)
-* [Apache Camel builders](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
+* Java 中的 `StringBuilder` 用于构建字符串。
+* `java.lang.StringBuffer` 用于创建可变字符串对象。
+* Java.nio.ByteBuffer 以及类似的缓冲区，如 FloatBuffer、IntBuffer 等
+* `javax.swing.GroupLayout.Group#addComponent()`
+* IDE 中的各种 GUI 构建器，用于构建 UI 组件。
+* 所有实现 [java.lang.Appendable](http://docs.oracle.com/javase/8/docs/api/java/lang/Appendable.html) 的类
+* [Apache Camel 构建器](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
 * [Apache Commons Option.Builder](https://commons.apache.org/proper/commons-cli/apidocs/org/apache/commons/cli/Option.Builder.html)
 
-## Benefits and Trade-offs of Builder Pattern
+## 建造者模式的优势与权衡
 
-Benefits:
+优势：
 
-* More control over the construction process compared to other creational patterns
-* Supports constructing objects step-by-step, defer construction steps or run steps recursively
-* Can construct objects that require a complex assembly of sub-objects. The final product is detached from the parts that make it up, as well as their assembly process
-* Single Responsibility Principle. You can isolate complex construction code from the business logic of the product
+* 与其它创建型模式相比，对构建过程有更多控制
+* 支持逐步构建对象，延迟构建步骤或递归执行步骤
+* 可以构建需要复杂组装子对象的对象。最终产品与其组成部分以及它们的组装过程分离
+* 单一职责原则。你可以将复杂的构建代码从业务逻辑中分离出来
 
-Trade-offs:
+权衡：
 
-* The overall complexity of the code can increase since the pattern requires creating multiple new classes
-* May increase memory usage due to the necessity of creating multiple builder objects
+* 由于该模式需要创建多个新类，代码的总体复杂性可能会增加
+* 可能会增加内存使用量，因为需要创建多个构建器对象
 
-## Related Java Design Patterns
+## 相关 Java 设计模式
 
-* [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Can be used in conjunction with Builder to build parts of a complex object.
-* [Prototype](https://java-design-patterns.com/patterns/prototype/): Builders often create objects from a prototype.
-* [Step Builder](https://java-design-patterns.com/patterns/step-builder/): It is a variation of the Builder pattern that generates a complex object using a step-by-step approach. The Step Builder pattern is a good choice when you need to build an object with a large number of optional parameters, and you want to avoid the telescoping constructor antipattern.
+* [抽象工厂](https://java-design-patterns.com/patterns/abstract-factory/): 可以与建造者结合使用，以构建复杂对象的各个部分。
+* [原型](https://java-design-patterns.com/patterns/prototype/): 构建器通常从原型创建对象。
+* [步骤构建器](https://java-design-patterns.com/patterns/step-builder/): 这是建造者模式的一种变体，通过逐步方法生成复杂对象。当需要构建具有大量可选参数的对象，并且希望避免望远镜式构造函数反模式时，步骤构建器模式是一个不错的选择。
 
-## References and Credits
+## 参考文献和致谢
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [设计模式：可重用面向对象软件的元素](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
-* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
-* [Refactoring to Patterns](https://amzn.to/3VOO4F5)
+* [Head First 设计模式：构建可扩展和可维护的面向对象软件](https://amzn.to/49NGldq)
+* [重构到模式](https://amzn.to/3VOO4F5)

@@ -1,43 +1,47 @@
----
-title: "Singleton Pattern in Java: Implementing Global Access Points in Java Applications"
-shortTitle: Singleton
-description: "Explore the Singleton Pattern in Java with our comprehensive guide. Learn how to implement efficient object management for your Java applications, ensuring optimal use of resources and easy access with examples and detailed explanations."
-category: Creational
-language: en
-tag:
-  - Gang of Four
-  - Instantiation
-  - Lazy initialization
-  - Resource management
+# Java 中的单例模式：在 Java 应用中实现全局访问点
+
 ---
 
-## Also known as
+- title: "Java 中的单例模式：在 Java 应用中实现全局访问点"
+- shortTitle: 单例
+- description: "通过我们的综合指南，探索 Java 中的单例模式。学习如何为 Java 应用实现高效的对象管理，确保资源的最优使用和通过示例与详细解释实现轻松访问。"
+- category: 创建型
+- language: zh
+- tag:
+  - 四人组
+  - 实例化
+  - 懒加载
+  - 资源管理
 
-* Single Instance
+---
 
-## Intent of Singleton Design Pattern
+## 又称
 
-Ensure a Java class only has one instance, and provide a global point of access to this singleton instance.
+* 单一实例
 
-## Detailed Explanation of Singleton Pattern with Real-World Examples
+## 单例设计模式的意图
 
-Real-world example
+确保 Java 类只有一个实例，并提供一个全局访问点来访问这个单例实例。
 
-> A real-world analogy for the Singleton pattern is a government issuing a passport. In a country, each citizen can only be issued one valid passport at a time. The passport office ensures that no duplicate passports are issued to the same person. Whenever a citizen needs to travel, they must use this single passport, which serves as the unique, globally recognized identifier for their travel credentials. This controlled access and unique instance management mirrors how the Singleton pattern ensures efficient object management in Java applications.
+## 带有实际案例的单例模式详细解释
 
-In plain words
+现实世界中的例子
 
-> Ensures that only one object of a particular class is ever created.
+> 单例模式的一个现实类比是一个国家发放护照。在一个国家中，每个公民一次只能被发放一个有效的护照。护照办公室确保不会向同一个人发放重复的护照。每当公民需要旅行时，他们必须使用这个单一护照，它作为全球认可的旅行凭证。这种受控访问和唯一实例管理反映了单例模式如何在 Java 应用中确保高效的对象管理。
 
-Wikipedia says
+直白地说
 
-> In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
+> 确保某个类只创建一个对象实例。
 
-## Programmatic Example of Singleton Pattern in Java
+维基百科说
 
-Joshua Bloch, Effective Java 2nd Edition p.18
+> 在软件工程中，单例模式是一种软件设计模式，它限制了一个类只能被实例化为一个对象。当需要一个对象来协调系统中的动作时，这非常有用。
 
-> A single-element enum type is the best way to implement a singleton
+## Java 中单例模式的编程示例
+
+Joshua Bloch，《Effective Java》第二版第 18 页
+
+> 一个单元素枚举类型是实现单例的最佳方式
 
 ```java
 public enum EnumIvoryTower {
@@ -45,7 +49,7 @@ public enum EnumIvoryTower {
 }
 ```
 
-Then in order to use:
+然后使用如下：
 
 ```java
     var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
@@ -54,56 +58,56 @@ Then in order to use:
     LOGGER.info("enumIvoryTower2={}", enumIvoryTower2);
 ```
 
-The console output
+控制台输出
 
 ```
 enumIvoryTower1=com.iluwatar.singleton.EnumIvoryTower@1221555852
 enumIvoryTower2=com.iluwatar.singleton.EnumIvoryTower@1221555852
 ```
 
-## When to Use the Singleton Pattern in Java
+## 在 Java 中何时使用单例模式
 
-Use the Singleton pattern when
+在以下情况下使用单例模式
 
-* There must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
-* When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
+* 必须确保某个类只有一个实例，并且客户端需要从一个众所周知的访问点访问它
+* 当唯一的实例应该通过子类化来扩展，并且客户端应该能够在不修改代码的情况下使用扩展的实例
 
-## Real-World Applications of Singleton Pattern in Java
+## 单例模式在 Java 中的实际应用
 
-* The logging class
-* Configuration classes in many applications
-* Connection pools
-* File manager
+* 日志记录类
+* 许多应用程序中的配置类
+* 连接池
+* 文件管理器
 * [java.lang.Runtime#getRuntime()](http://docs.oracle.com/javase/8/docs/api/java/lang/Runtime.html#getRuntime%28%29)
 * [java.awt.Desktop#getDesktop()](http://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--)
 * [java.lang.System#getSecurityManager()](http://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getSecurityManager--)
 
-## Benefits and Trade-offs of Singleton Pattern
+## 单例模式的优势与权衡
 
-Benefits:
+优势：
 
-* Controlled access to the single instance.
-* Reduced namespace pollution.
-* Allows refinement of operations and representation.
-* Permits a variable number of instances (more than one, if desired).
-* More flexible than class operations.
+* 对唯一实例的受控访问。
+* 减少命名空间污染。
+* 允许细化操作和表示。
+* 允许可变数量的实例（如果需要，可以超过一个）。
+* 比类操作更灵活。
 
-Trade-offs:
+权衡：
 
-* Difficult to test due to global state.
-* Potentially more complex lifecycle management.
-* Can introduce bottlenecks if used in a concurrent context without careful synchronization.
+* 由于全局状态的存在，测试难度增加。
+* 可能需要更复杂的生命周期管理。
+* 如果在并发上下文中使用而不进行仔细的同步，可能会引入瓶颈。
 
-## Related Java Design Patterns
+## 相关 Java 设计模式
 
-* [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Often used to ensure a class only has one instance.
-* [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Singleton pattern can be implemented using a Factory Method to encapsulate the creation logic.
-* [Prototype](https://java-design-patterns.com/patterns/prototype/): Avoids the need to create instances, can work alongside Singleton to manage unique instances.
+* [抽象工厂](https://java-design-patterns.com/patterns/abstract-factory/)：通常用于确保某个类只有一个实例。
+* [工厂方法](https://java-design-patterns.com/patterns/factory-method/)：可以使用工厂方法来封装单例模式的创建逻辑。
+* [原型](https://java-design-patterns.com/patterns/prototype/)：避免需要创建实例，可以与单例模式一起管理唯一实例。
 
-## References and Credits
+## 参考文献和致谢
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [设计模式：可重用面向对象软件的元素](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
-* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
-* [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
-* [Refactoring to Patterns](https://amzn.to/3VOO4F5)
+* [Head First 设计模式：构建可扩展和可维护的面向对象软件](https://amzn.to/49NGldq)
+* [Java 设计模式：通过实际案例获得实践经验](https://amzn.to/3yhh525)
+* [重构到模式](https://amzn.to/3VOO4F5)

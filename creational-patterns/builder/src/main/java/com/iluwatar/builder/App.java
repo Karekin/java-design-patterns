@@ -28,52 +28,51 @@ import com.iluwatar.builder.Hero.Builder;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The intention of the Builder pattern is to find a solution to the telescoping constructor
- * antipattern. The telescoping constructor antipattern occurs when the increase of object
- * constructor parameter combination leads to an exponential list of constructors. Instead of using
- * numerous constructors, the builder pattern uses another object, a builder, that receives each
- * initialization parameter step by step and then returns the resulting constructed object at once.
+ * 建造者模式的目的是为望远镜式构造函数反模式提供解决方案。望远镜式构造函数反模式出现在对象构造函数参数组合增加时，
+ * 导致构造函数列表呈指数级增长。与其使用多个构造函数，建造者模式使用另一个对象，即建造者，
+ * 该对象逐步接收每个初始化参数，然后一次性返回构建完成的对象。
  *
- * <p>The Builder pattern has another benefit. It can be used for objects that contain flat data
- * (html code, SQL query, X.509 certificate...), that is to say, data that can't be easily edited.
- * This type of data cannot be edited step by step and must be edited at once. The best way to
- * construct such an object is to use a builder class.
+ * <p>建造者模式还有另一个好处。它可用于包含平面数据的对象（如HTML代码、SQL查询、X.509证书等），
+ * 也就是说，那些无法轻松编辑的数据。这种类型的数据不能逐步编辑，必须一次性编辑。构建这种对象的最佳方式是使用建造者类。
  *
- * <p>In this example we have the Builder pattern variation as described by Joshua Bloch in
- * Effective Java 2nd Edition.
+ * <p>在这个例子中，我们采用的是 Joshua Bloch 在《Effective Java》第二版中描述的建造者模式变体。
  *
- * <p>We want to build {@link Hero} objects, but its construction is complex because of the many
- * parameters needed. To aid the user we introduce {@link Builder} class. {@link Hero.Builder} takes
- * the minimum parameters to build {@link Hero} object in its constructor. After that additional
- * configuration for the {@link Hero} object can be done using the fluent {@link Builder} interface.
- * When configuration is ready the build method is called to receive the final {@link Hero} object.
+ * <p>我们想要构建 {@link Hero} 对象，但由于需要许多参数，其构造过程较为复杂。为了帮助用户，
+ * 我们引入了 {@link Builder} 类。{@link Hero.Builder} 在其构造函数中接收构建 {@link Hero} 对象所需的最小参数。
+ * 之后，可以使用流畅的 {@link Builder} 接口对 {@link Hero} 对象进行额外配置。当配置完成时，
+ * 调用构建方法以获得最终的 {@link Hero} 对象。
  */
 @Slf4j
 public class App {
 
   /**
-   * Program entry point.
+   * 程序入口点。
    *
-   * @param args command line args
+   * @param args 命令行参数
    */
   public static void main(String[] args) {
 
+    // 创建一个法师类型的 Hero 对象，名字是 Riobard，头发颜色是黑色，武器是匕首
     var mage = new Hero.Builder(Profession.MAGE, "Riobard")
-        .withHairColor(HairColor.BLACK)
-        .withWeapon(Weapon.DAGGER)
-        .build();
-    LOGGER.info(mage.toString());
+        .withHairColor(HairColor.BLACK) // 设置头发颜色为黑色
+        .withWeapon(Weapon.DAGGER) // 设置武器为匕首
+        .build(); // 调用 build() 方法构建最终的 Hero 对象
+    LOGGER.info(mage.toString()); // 输出法师对象的信息
 
+    // 创建一个战士类型的 Hero 对象，名字是 Amberjill，头发颜色是金色，头发类型是长卷发，盔甲是锁子甲，武器是剑
     var warrior = new Hero.Builder(Profession.WARRIOR, "Amberjill")
-        .withHairColor(HairColor.BLOND)
-        .withHairType(HairType.LONG_CURLY).withArmor(Armor.CHAIN_MAIL).withWeapon(Weapon.SWORD)
-        .build();
-    LOGGER.info(warrior.toString());
+        .withHairColor(HairColor.BLOND) // 设置头发颜色为金色
+        .withHairType(HairType.LONG_CURLY) // 设置头发类型为长卷发
+        .withArmor(Armor.CHAIN_MAIL) // 设置盔甲为锁子甲
+        .withWeapon(Weapon.SWORD) // 设置武器为剑
+        .build(); // 调用 build() 方法构建最终的 Hero 对象
+    LOGGER.info(warrior.toString()); // 输出战士对象的信息
 
+    // 创建一个盗贼类型的 Hero 对象，名字是 Desmond，头发类型是秃头，武器是弓
     var thief = new Hero.Builder(Profession.THIEF, "Desmond")
-        .withHairType(HairType.BALD)
-        .withWeapon(Weapon.BOW)
-        .build();
-    LOGGER.info(thief.toString());
+        .withHairType(HairType.BALD) // 设置头发类型为秃头
+        .withWeapon(Weapon.BOW) // 设置武器为弓
+        .build(); // 调用 build() 方法构建最终的 Hero 对象
+    LOGGER.info(thief.toString()); // 输出盗贼对象的信息
   }
 }

@@ -1,46 +1,50 @@
+# Java 中的抽象工厂模式：优雅掌控对象创建
+
 ---
-title: "Abstract Factory Pattern in Java: Mastering Object Creation Elegantly"
-shortTitle: Abstract Factory
-description: "Learn the Abstract Factory pattern in Java with real-world examples, class diagrams, and tutorials. Understand its intent, applicability, benefits, and known uses to enhance your design pattern knowledge."
-category: Creational
-language: en
+
+title: "Java 中的抽象工厂模式：优雅掌控对象创建"
+shortTitle: 抽象工厂
+description: "通过实际案例、类图和教程，学习 Java 中的抽象工厂模式。了解其目的、适用性、优势和已知用途，提升设计模式知识。"
+category: 创建型
+language: zh
 tag:
-  - Abstraction
-  - Decoupling
-  - Gang of Four
-  - Instantiation
-  - Polymorphism
+- 抽象
+- 解耦
+- 四人组
+- 实例化
+- 多态
+
 ---
 
-## Also known as
+## 又称
 
-* Kit
+* 套件
 
-## Intent of Abstract Factory Design Pattern
+## 抽象工厂设计模式的目的
 
-The Abstract Factory pattern in Java provides an interface for creating families of related or dependent objects without specifying their concrete classes, enhancing modularity and flexibility in software design.
+Java 中的抽象工厂模式提供了一种接口，用于创建相关或依赖对象家族，而无需指定它们的具体类，增强软件设计的模块性和灵活性。
 
-## Detailed Explanation of Abstract Factory Pattern with Real-World Examples
+## 带有实际案例的抽象工厂模式详细解释
 
-Real-world example
+现实世界中的例子
 
-> Imagine a furniture company that uses the Abstract Factory pattern in Java to produce various styles of furniture: modern, Victorian, and rustic. Each style includes products like chairs, tables, and sofas. To ensure consistency within each style, the company uses an Abstract Factory pattern.
+> 想象一家家具公司，它使用 Java 中的抽象工厂模式来生产各种风格的家具：现代、维多利亚和乡村。每种风格都包括椅子、桌子和沙发等产品。为了确保每种风格内部的一致性，公司使用抽象工厂模式。
 >
-> In this scenario, the Abstract Factory is an interface for creating families of related furniture objects (chairs, tables, sofas). Each concrete factory (ModernFurnitureFactory, VictorianFurnitureFactory, RusticFurnitureFactory) implements the Abstract Factory interface and creates a set of products that match the specific style. This way, clients can create a whole set of modern or Victorian furniture without worrying about the details of their instantiation. This maintains a consistent style and allows easy swapping of one style of furniture for another.
+> 在这个场景中，抽象工厂是一个接口，用于创建相关家具对象家族（椅子、桌子、沙发）。每个具体工厂（现代家具工厂、维多利亚家具工厂、乡村家具工厂）实现抽象工厂接口，并创建一套符合特定风格的产品。这样，客户可以创建一整套现代或维多利亚家具，而无需担心实例化的细节。这保持了一致的风格，并允许轻松地将一种风格的家具替换为另一种。
 
-In plain words
+直白地说
 
-> A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.
+> 工厂的工厂；一个将单个但相关/依赖的工厂组合在一起的工厂，而无需指定它们的具体类。
 
-Wikipedia says
+维基百科说
 
-> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
+> 抽象工厂模式提供了一种方式，将一组具有共同主题的单个工厂封装起来，而无需指定它们的具体类。
 
-## Programmatic Example of Abstract Factory in Java
+## Java 中抽象工厂的编程示例
 
-To create a kingdom using the Abstract Factory pattern in Java, we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency between the objects in the kingdom.
+为了使用抽象工厂模式创建一个王国，我们需要具有共同主题的对象。精灵王国需要精灵国王、精灵城堡和精灵军队，而兽人王国需要兽人国王、兽人城堡和兽人军队。王国中的对象之间存在依赖关系。
 
-Translating the kingdom example above. First of all, we have some interfaces and implementation for the objects in the kingdom.
+将上面的王国示例进行翻译。首先，我们有一些接口和王国中对象的实现。
 
 ```java
 public interface Castle {
@@ -55,9 +59,9 @@ public interface Army {
     String getDescription();
 }
 
-// Elven implementations ->
+// 精灵实现 ->
 public class ElfCastle implements Castle {
-    static final String DESCRIPTION = "This is the elven castle!";
+    static final String DESCRIPTION = "这是精灵城堡！";
 
     @Override
     public String getDescription() {
@@ -66,7 +70,7 @@ public class ElfCastle implements Castle {
 }
 
 public class ElfKing implements King {
-    static final String DESCRIPTION = "This is the elven king!";
+    static final String DESCRIPTION = "这是精灵国王！";
 
     @Override
     public String getDescription() {
@@ -75,7 +79,7 @@ public class ElfKing implements King {
 }
 
 public class ElfArmy implements Army {
-    static final String DESCRIPTION = "This is the elven Army!";
+    static final String DESCRIPTION = "这是精灵军队！";
 
     @Override
     public String getDescription() {
@@ -83,10 +87,10 @@ public class ElfArmy implements Army {
     }
 }
 
-// Orcish implementations similarly -> ...
+// 兽人实现类似 -> ...
 ```
 
-Then we have the abstraction and implementations for the kingdom factory.
+然后我们有王国工厂的抽象和实现。
 
 ```java
 public interface KingdomFactory {
@@ -115,10 +119,10 @@ public class ElfKingdomFactory implements KingdomFactory {
     }
 }
 
-// Orcish implementations similarly -> ...
+// 兽人实现类似 -> ...
 ```
 
-Now, we can design a factory for our different kingdom factories. In this example, we created `FactoryMaker`, responsible for returning an instance of either `ElfKingdomFactory` or `OrcKingdomFactory`. The client can use `FactoryMaker` to create the desired concrete factory which, in turn, will produce different concrete objects (derived from `Army`, `King`, `Castle`). In this example, we also used an enum to parameterize which type of kingdom factory the client will ask for.
+现在，我们可以为不同的王国工厂设计一个工厂。在这个例子中，我们创建了`FactoryMaker`，负责返回`ElfKingdomFactory`或`OrcKingdomFactory`的实例。客户端可以使用`FactoryMaker`来创建所需的具象工厂，该工厂将生成不同的具象对象（源自`Army`、`King`、`Castle`）。在这个例子中，我们还使用了一个枚举来参数化客户端将请求的王国工厂类型。
 
 ```java
 public static class FactoryMaker {
@@ -136,92 +140,132 @@ public static class FactoryMaker {
 }
 ```
 
-Here is the main function of our example application:
+这是示例应用程序的主函数：
 
 ```java
-LOGGER.info("elf kingdom");
+LOGGER.info("精灵王国");
 createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
 LOGGER.info(kingdom.getArmy().getDescription());
 LOGGER.info(kingdom.getCastle().getDescription());
 LOGGER.info(kingdom.getKing().getDescription());
 
-LOGGER.info("orc kingdom");
+LOGGER.info("兽人王国");
 createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
 LOGGER.info(kingdom.getArmy().getDescription());
 LOGGER.info(kingdom.getCastle().getDescription());
 LOGGER.info(kingdom.getKing().getDescription());
 ```
 
-The program output:
+程序输出：
 
 ```
-07:35:46.340 [main] INFO com.iluwatar.abstractfactory.App -- elf kingdom
-07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- This is the elven army!
-07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- This is the elven castle!
-07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- This is the elven king!
-07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- orc kingdom
-07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- This is the orc army!
-07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- This is the orc castle!
-07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- This is the orc king!
+07:35:46.340 [main] INFO com.iluwatar.abstractfactory.App -- 精灵王国
+07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- 这是精灵军队！
+07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- 这是精灵城堡！
+07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- 这是精灵国王！
+07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- 兽人王国
+07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- 这是兽人军队！
+07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- 这是兽人城堡！
+07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- 这是兽人国王！
 ```
 
-## Abstract Factory Pattern Class Diagram
+## 抽象工厂模式类图
 
-![Abstract Factory](etc/abstract-factory.urm.png "Abstract Factory class diagram")
+![抽象工厂](etc/abstract-factory.urm.png "抽象工厂类图")
 
-## When to Use the Abstract Factory Pattern in Java
+该 UML 类图围绕“王国”主题展示了 **抽象工厂（Abstract Factory）模式** 的实现，主要关系如下：
 
-Use the Abstract Factory pattern in Java when:
+1. **`KingdomFactory` 接口**
+    - 定义了用于创建王国组成部分的方法：
+        - `createArmy() : Army`
+        - `createCastle() : Castle`
+        - `createKing() : King`
+    - 两个实现类：
+        - **`ElfKingdomFactory`**：返回精灵族的 `Army`、`Castle`、`King`。
+        - **`OrcKingdomFactory`**：返回兽人族的 `Army`、`Castle`、`King`。
 
-* The system should be independent of how its products are created, composed, and represented.
-* You need to configure the system with one of multiple families of products.
-* A family of related product objects must be used together, enforcing consistency.
-* You want to provide a class library of products, exposing only their interfaces, not their implementations.
-* The lifetime of dependencies is shorter than the consumer's lifetime.
-* Dependencies need to be constructed using runtime values or parameters.
-* You need to choose which product to use from a family at runtime.
-* Adding new products or families should not require changes to existing code.
+2. **抽象的王国组成部分**
+    - **`King`** 接口由 **`OrcKing`**、**`ElfKing`** 两个具体类实现。
+    - **`Castle`** 接口由 **`OrcCastle`**、**`ElfCastle`** 两个具体类实现。
+    - **`Army`** 接口由 **`OrcArmy`**、**`ElfArmy`** 两个具体类实现。
+    - 每个具体类都实现了各自的 `getDescription()` 方法，返回相应描述。
 
-## Abstract Factory Pattern Java Tutorials
+3. **`KingdomType` 枚举**
+    - 枚举常量：`ELF`、`ORC`。
+    - 用来区分要创建的王国类型。
 
-* [Abstract Factory Design Pattern in Java (DigitalOcean)](https://www.digitalocean.com/community/tutorials/abstract-factory-design-pattern-in-java)
-* [Abstract Factory(Refactoring Guru)](https://refactoring.guru/design-patterns/abstract-factory)
+4. **`FactoryMaker` 工具类**
+    - 提供 `makeFactory(type: KingdomType): KingdomFactory` 方法。
+    - 根据 `KingdomType` 选择并返回相应的 `KingdomFactory` 实例。
 
-## Benefits and Trade-offs of Abstract Factory Pattern
+5. **`App` 类**
+    - 作为示例运行的主类，包含 `army`、`castle`、`king` 等字段。
+    - 通过 `createKingdom(factory: KingdomFactory)` 方法，利用注入的工厂创建并设置 `Army`、`Castle`、`King` 对象。
+    - 也提供单独的 `getArmy(factory: KingdomFactory)`、`getCastle(factory: KingdomFactory)`、`getKing(factory: KingdomFactory)` 用于获取对应对象。
 
-Benefits:
+---
 
-* Flexibility: Easily switch between product families without code modifications.
+**类图中的主要关系**
+- **接口与实现**：
+    - `KingdomFactory` 被 `ElfKingdomFactory`、`OrcKingdomFactory` 实现；
+    - `King`、`Castle`、`Army` 等接口分别被精灵和兽人的具体类实现。
+- **关联 / 依赖**：
+    - `App` 通过调用 `FactoryMaker.makeFactory(...)` 来获取 `KingdomFactory`；
+    - `App` 使用获取到的工厂来创建 `Army`、`Castle`、`King` 对象。
+- **枚举类型**：
+    - `KingdomType` 作为区分王国类型的标识，被 `FactoryMaker` 用于选择具体工厂。
 
-* Decoupling: Client code only interacts with abstract interfaces, promoting portability and maintainability.
+这套设计让 **王国的创建流程**与**具体种族实现**解耦，可根据需求灵活切换或拓展新的种族，实现 **高扩展性** 和 **低耦合**。
 
-* Reusability: Abstract factories and products facilitate component reuse across projects.
+## 在 Java 中何时使用抽象工厂模式
 
-* Maintainability: Changes to individual product families are localized, simplifying updates.
+在以下情况下使用 Java 中的抽象工厂模式：
 
-Trade-offs:
+* 系统应独立于其产品的创建、组合和表示方式。
+* 需要使用多个产品家族中的一个来配置系统。
+* 必须一起使用相关产品对象家族，强制一致性。
+* 希望提供一个产品类库，仅暴露它们的接口，而不是实现。
+* 依赖项的生命周期短于消费者。
+* 依赖项需要用运行时值或参数构造。
+* 需要在运行时选择使用哪个产品家族。
+* 添加新产品或家族不应需要修改现有代码。
 
-* Complexity: Defining abstract interfaces and concrete factories adds initial overhead.
+## 抽象工厂模式 Java 教程
 
-* Indirectness: Client code interacts with products indirectly through factories, potentially reducing transparency.
+* [Java 中的抽象工厂设计模式 (DigitalOcean)](https://www.digitalocean.com/community/tutorials/abstract-factory-design-pattern-in-java)
+* [抽象工厂(Refactoring Guru)](https://refactoring.guru/design-patterns/abstract-factory)
 
-## Real-World Applications of Abstract Factory Pattern in Java
+## 抽象工厂模式的优势与权衡
 
-* Java Swing's `LookAndFeel` classes for providing different look-and-feel options.
-* Various implementations in the Java Abstract Window Toolkit (AWT) for creating different GUI components.
+优势：
+
+* 灵活性：无需修改代码即可轻松切换产品家族。
+* 解耦：客户端代码仅与抽象接口交互，促进可移植性和可维护性。
+* 可重用性：抽象工厂和产品有助于跨项目的组件重用。
+* 可维护性：对单个产品家族的更改是局部化的，简化了更新。
+
+权衡：
+
+* 复杂性：定义抽象接口和具体工厂会增加初始开销。
+* 间接性：客户端代码通过工厂间接与产品交互，可能降低透明度。
+
+## Java 中抽象工厂模式的实际应用
+
+* Java Swing 的`LookAndFeel`类，用于提供不同的外观选项。
+* Java 抽象窗口工具包（AWT）中创建不同 GUI 组件的各种实现。
 * [javax.xml.parsers.DocumentBuilderFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html)
 * [javax.xml.transform.TransformerFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--)
 * [javax.xml.xpath.XPathFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/xpath/XPathFactory.html#newInstance--)
 
-## Related Java Design Patterns
+## 相关 Java 设计模式
 
-* [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Abstract Factory uses Factory Methods to create products.
-* [Singleton](https://java-design-patterns.com/patterns/singleton/): Abstract Factory classes are often implemented as Singletons.
-* [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/): Similar to Abstract Factory but focuses on configuring and managing a set of related objects in a flexible way.
+* [工厂方法](https://java-design-patterns.com/patterns/factory-method/): 抽象工厂使用工厂方法来创建产品。
+* [单例](https://java-design-patterns.com/patterns/singleton/): 抽象工厂类通常被实现为单例。
+* [工厂套件](https://java-design-patterns.com/patterns/factory-kit/): 与抽象工厂类似，但侧重于以灵活的方式配置和管理一组相关对象。
 
-## References and Credits
+## 参考文献和致谢
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
-* [Design Patterns in Java](https://amzn.to/3Syw0vC)
-* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
-* [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3HWNf4U)
+* [设计模式：可重用面向对象软件的元素](https://amzn.to/3w0pvKI)
+* [Java 中的设计模式](https://amzn.to/3Syw0vC)
+* [Head First 设计模式：构建可扩展和可维护的面向对象软件](https://amzn.to/49NGldq)
+* [Java 设计模式：通过实际案例获得实践经验](https://amzn.to/3HWNf4U)
